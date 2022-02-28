@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/constant.dart';
-import 'package:flutter_deer/setting/provider/locale_provider.dart';
-import 'package:flutter_deer/util/toast_utils.dart';
+import 'package:flutter_deer_djzhang/res/constant.dart';
+import 'package:flutter_deer_djzhang/setting/provider/locale_provider.dart';
+import 'package:flutter_deer_djzhang/util/toast_utils.dart';
 import 'package:sp_util/sp_util.dart';
-import 'package:flutter_deer/widgets/my_app_bar.dart';
+import 'package:flutter_deer_djzhang/widgets/my_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class LocalePage extends StatefulWidget {
-
   const LocalePage({Key? key}) : super(key: key);
 
   @override
@@ -15,14 +14,13 @@ class LocalePage extends StatefulWidget {
 }
 
 class _LocalePageState extends State<LocalePage> {
-
   final List<String> _list = <String>['跟随系统', '中文', 'English'];
 
   @override
   Widget build(BuildContext context) {
     final String? locale = SpUtil.getString(Constant.locale);
     String localeMode;
-    switch(locale) {
+    switch (locale) {
       case 'zh':
         localeMode = _list[1];
         break;
@@ -43,7 +41,8 @@ class _LocalePageState extends State<LocalePage> {
         itemBuilder: (_, int index) {
           return InkWell(
             onTap: () {
-              final String locale = index == 0 ? '' : (index == 1 ? 'zh' : 'en');
+              final String locale =
+                  index == 0 ? '' : (index == 1 ? 'zh' : 'en');
               context.read<LocaleProvider>().setLocale(locale);
               Toast.show('当前功能仅登录模块有效');
               setState(() {});

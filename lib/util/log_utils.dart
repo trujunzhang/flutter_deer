@@ -1,13 +1,11 @@
-
 import 'dart:convert' as convert;
 import 'package:common_utils/common_utils.dart';
-import 'package:flutter_deer/res/constant.dart';
+import 'package:flutter_deer_djzhang/res/constant.dart';
 
 /// 输出Log工具类
 class Log {
-
   static const String tag = 'DEER-LOG';
-  
+
   static void init() {
     LogUtil.init(isDebug: !Constant.inProduction);
   }
@@ -34,14 +32,18 @@ class Log {
           _printList(data);
         } else
           LogUtil.v(msg, tag: tag);
-      } catch(e) {
+      } catch (e) {
         LogUtil.e(msg, tag: tag);
       }
     }
   }
 
   // https://github.com/Milad-Akarie/pretty_dio_logger
-  static void _printMap(Map data, {String tag = tag, int tabs = 1, bool isListItem = false, bool isLast = false}) {
+  static void _printMap(Map data,
+      {String tag = tag,
+      int tabs = 1,
+      bool isListItem = false,
+      bool isLast = false}) {
     final bool isRoot = tabs == 1;
     final String initialIndent = _indent(tabs);
     tabs++;
@@ -58,7 +60,8 @@ class Log {
       }
       if (value is Map) {
         if (value.isEmpty)
-          LogUtil.v('${_indent(tabs)} $key: $value${!isLast ? ',' : ''}', tag: tag);
+          LogUtil.v('${_indent(tabs)} $key: $value${!isLast ? ',' : ''}',
+              tag: tag);
         else {
           LogUtil.v('${_indent(tabs)} $key: {', tag: tag);
           _printMap(value, tabs: tabs);

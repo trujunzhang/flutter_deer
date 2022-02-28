@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/util/change_notifier_manage.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/util/toast_utils.dart';
-import 'package:flutter_deer/util/other_utils.dart';
-import 'package:flutter_deer/widgets/my_app_bar.dart';
-import 'package:flutter_deer/widgets/my_button.dart';
-import 'package:flutter_deer/widgets/my_scroll_view.dart';
-import 'package:flutter_deer/login/widgets/my_text_field.dart';
+import 'package:flutter_deer_djzhang/util/change_notifier_manage.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/util/toast_utils.dart';
+import 'package:flutter_deer_djzhang/util/other_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/my_app_bar.dart';
+import 'package:flutter_deer_djzhang/widgets/my_button.dart';
+import 'package:flutter_deer_djzhang/widgets/my_scroll_view.dart';
+import 'package:flutter_deer_djzhang/login/widgets/my_text_field.dart';
 
 /// design/1注册登录/index.html#artboard13
 class UpdatePasswordPage extends StatefulWidget {

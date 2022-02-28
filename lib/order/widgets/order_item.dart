@@ -1,12 +1,12 @@
 import 'package:common_utils/common_utils.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/order/widgets/pay_type_dialog.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/util/toast_utils.dart';
-import 'package:flutter_deer/util/other_utils.dart';
-import 'package:flutter_deer/widgets/my_card.dart';
+import 'package:flutter_deer_djzhang/order/widgets/pay_type_dialog.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
+import 'package:flutter_deer_djzhang/util/toast_utils.dart';
+import 'package:flutter_deer_djzhang/util/other_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/my_card.dart';
 
 import '../order_router.dart';
 

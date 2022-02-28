@@ -1,8 +1,7 @@
-import 'package:flutter_deer/res/constant.dart';
-import 'package:flutter_deer/generated/json/base/json_convert_content.dart';
+import 'package:flutter_deer_djzhang/res/constant.dart';
+import 'package:flutter_deer_djzhang/generated/json/base/json_convert_content.dart';
 
 class BaseEntity<T> {
-
   BaseEntity(this.code, this.message, this.data);
 
   BaseEntity.fromJson(Map<String, dynamic> json) {

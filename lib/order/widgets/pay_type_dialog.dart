@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/widgets/base_dialog.dart';
-import 'package:flutter_deer/widgets/load_image.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/widgets/base_dialog.dart';
+import 'package:flutter_deer_djzhang/widgets/load_image.dart';
 
 /// design/3订单/index.html#artboard5
 class PayTypeDialog extends StatefulWidget {

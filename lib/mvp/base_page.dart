@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/mvp/base_presenter.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/util/log_utils.dart';
-import 'package:flutter_deer/util/toast_utils.dart';
-import 'package:flutter_deer/widgets/progress_dialog.dart';
+import 'package:flutter_deer_djzhang/mvp/base_presenter.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/util/log_utils.dart';
+import 'package:flutter_deer_djzhang/util/toast_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/progress_dialog.dart';
 import 'mvps.dart';
 
-mixin BasePageMixin<T extends StatefulWidget, P extends BasePresenter> on State<T> implements IMvpView {
-
+mixin BasePageMixin<T extends StatefulWidget, P extends BasePresenter>
+    on State<T> implements IMvpView {
   P? presenter;
 
   P createPresenter();
-  
+
   @override
   BuildContext getContext() {
     return context;
   }
-  
+
   @override
   void closeProgress() {
     if (mounted && _isShowDialog) {
@@ -36,8 +36,9 @@ mixin BasePageMixin<T extends StatefulWidget, P extends BasePresenter> on State<
         showDialog<void>(
           context: context,
           barrierDismissible: false,
-          barrierColor: const Color(0x00FFFFFF), // 默认dialog背景色为半透明黑色，这里修改为透明（1.20添加属性）
-          builder:(_) {
+          barrierColor:
+              const Color(0x00FFFFFF), // 默认dialog背景色为半透明黑色，这里修改为透明（1.20添加属性）
+          builder: (_) {
             return WillPopScope(
               onWillPop: () async {
                 // 拦截到返回键，证明dialog被手动关闭
@@ -48,7 +49,7 @@ mixin BasePageMixin<T extends StatefulWidget, P extends BasePresenter> on State<
             );
           },
         );
-      } catch(e) {
+      } catch (e) {
         /// 异常原因主要是页面没有build完成就调用Progress。
         print(e);
       }
@@ -59,7 +60,7 @@ mixin BasePageMixin<T extends StatefulWidget, P extends BasePresenter> on State<
   void showToast(String string) {
     Toast.show(string);
   }
-  
+
   /// 可自定义Progress
   Widget buildProgress() => const ProgressDialog(hintText: '正在加载...');
 
@@ -99,5 +100,4 @@ mixin BasePageMixin<T extends StatefulWidget, P extends BasePresenter> on State<
     presenter?.initState();
     super.initState();
   }
-  
 }

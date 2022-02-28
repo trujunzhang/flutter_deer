@@ -1,30 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/util/input_formatter/number_text_input_formatter.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/util/toast_utils.dart';
-import 'package:flutter_deer/widgets/base_dialog.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/util/input_formatter/number_text_input_formatter.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
+import 'package:flutter_deer_djzhang/util/toast_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/base_dialog.dart';
 
 /// design/7店铺-店铺配置/index.html#artboard1
 class RangePriceInputDialog extends StatefulWidget {
-
   const RangePriceInputDialog({
     Key? key,
     this.title,
     required this.onPressed,
-  }) : super(key : key);
+  }) : super(key: key);
 
   final String? title;
   final Function(String, String) onPressed;
-  
+
   @override
   _RangePriceInputDialog createState() => _RangePriceInputDialog();
-  
 }
 
 class _RangePriceInputDialog extends State<RangePriceInputDialog> {
-
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _controller1 = TextEditingController();
 
@@ -34,7 +31,7 @@ class _RangePriceInputDialog extends State<RangePriceInputDialog> {
     _controller1.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return BaseDialog(
@@ -52,12 +49,11 @@ class _RangePriceInputDialog extends State<RangePriceInputDialog> {
               child: _buildTextField(_controller),
             ),
             Container(
-              alignment: Alignment.center,
-              child: const Text('至'),
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              color: context.dialogBackgroundColor,
-              height: double.infinity
-            ),
+                alignment: Alignment.center,
+                child: const Text('至'),
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                color: context.dialogBackgroundColor,
+                height: double.infinity),
             Expanded(
               child: _buildTextField(_controller1),
             ),

@@ -1,25 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/widgets/base_dialog.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/base_dialog.dart';
 
 /// design/4商品/index.html#artboard10
 class GoodsSizeDialog extends StatefulWidget {
-
   const GoodsSizeDialog({
     Key? key,
     this.onPressed,
-  }) : super(key : key);
+  }) : super(key: key);
 
   final Function(String)? onPressed;
-  
+
   @override
   _GoodsSizeDialog createState() => _GoodsSizeDialog();
-  
 }
 
 class _GoodsSizeDialog extends State<GoodsSizeDialog> {
-
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -27,7 +24,7 @@ class _GoodsSizeDialog extends State<GoodsSizeDialog> {
     _controller.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return BaseDialog(

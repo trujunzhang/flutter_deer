@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/demo/navigator/book_entity.dart';
+import 'package:flutter_deer_djzhang/demo/navigator/book_entity.dart';
 
 class BookDetailsScreen extends StatelessWidget {
-
   const BookDetailsScreen({
     Key? key,
     required this.book,
-  }): super(key: key);
+  }) : super(key: key);
 
   final Book book;
 

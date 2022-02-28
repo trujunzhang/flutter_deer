@@ -1,11 +1,11 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/account/models/withdrawal_account_model.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/util/toast_utils.dart';
-import 'package:flutter_deer/widgets/load_image.dart';
+import 'package:flutter_deer_djzhang/account/models/withdrawal_account_model.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
+import 'package:flutter_deer_djzhang/util/toast_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/load_image.dart';
 
 class WithdrawalAccountItem extends StatefulWidget {
   const WithdrawalAccountItem({

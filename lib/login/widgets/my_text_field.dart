@@ -3,11 +3,11 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_deer/util/device_utils.dart';
+import 'package:flutter_deer_djzhang/util/device_utils.dart';
 import 'package:flutter_gen/gen_l10n/deer_localizations.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/widgets/load_image.dart';
-import 'package:flutter_deer/widgets/my_button.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/widgets/load_image.dart';
+import 'package:flutter_deer_djzhang/widgets/my_button.dart';
 
 /// 登录模块的输入框封装
 class MyTextField extends StatefulWidget {

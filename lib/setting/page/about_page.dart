@@ -2,15 +2,14 @@ import 'dart:async';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/util/device_utils.dart';
-import 'package:flutter_deer/util/other_utils.dart';
-import 'package:flutter_deer/widgets/my_app_bar.dart';
-import 'package:flutter_deer/widgets/click_item.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/util/device_utils.dart';
+import 'package:flutter_deer_djzhang/util/other_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/my_app_bar.dart';
+import 'package:flutter_deer_djzhang/widgets/click_item.dart';
 
 class AboutPage extends StatefulWidget {
-
   const AboutPage({Key? key}) : super(key: key);
 
   @override
@@ -18,7 +17,6 @@ class AboutPage extends StatefulWidget {
 }
 
 class _AboutPageState extends State<AboutPage> {
-
   final List<FlutterLogoStyle> _styles = <FlutterLogoStyle>[
     FlutterLogoStyle.stacked,
     FlutterLogoStyle.markOnly,
@@ -26,11 +24,20 @@ class _AboutPageState extends State<AboutPage> {
   ];
 
   final List<Cubic> _curves = <Cubic>[
-    Curves.ease, Curves.easeIn, Curves.easeInOutCubic, Curves.easeInOut,
-    Curves.easeInQuad, Curves.easeInCirc, Curves.easeInBack, Curves.easeInOutExpo,
-    Curves.easeInToLinear, Curves.easeOutExpo, Curves.easeInOutSine, Curves.easeOutSine,
+    Curves.ease,
+    Curves.easeIn,
+    Curves.easeInOutCubic,
+    Curves.easeInOut,
+    Curves.easeInQuad,
+    Curves.easeInCirc,
+    Curves.easeInBack,
+    Curves.easeInOutExpo,
+    Curves.easeInToLinear,
+    Curves.easeOutExpo,
+    Curves.easeInOutSine,
+    Curves.easeOutSine,
   ];
-  
+
   // 取随机颜色
   Color _randomColor() {
     final int red = Random.secure().nextInt(255);
@@ -51,9 +58,7 @@ class _AboutPageState extends State<AboutPage> {
         if (!mounted) {
           return;
         }
-        setState(() {
-
-        });
+        setState(() {});
       });
     });
   }
@@ -64,7 +69,7 @@ class _AboutPageState extends State<AboutPage> {
     _countdownTimer = null;
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -82,14 +87,14 @@ class _AboutPageState extends State<AboutPage> {
           ),
           Gaps.vGap10,
           ClickItem(
-            title: 'Github',
-            content: 'Go Star',
-            onTap: () => _launchWebURL('Flutter Deer', 'https://github.com/simplezhli/flutter_deer')
-          ),
+              title: 'Github',
+              content: 'Go Star',
+              onTap: () => _launchWebURL('Flutter Deer',
+                  'https://github.com/simplezhli/flutter_deer_djzhang')),
           ClickItem(
-            title: '作者博客',
-            onTap: () => _launchWebURL('作者博客', 'https://weilu.blog.csdn.net')
-          ),
+              title: '作者博客',
+              onTap: () =>
+                  _launchWebURL('作者博客', 'https://weilu.blog.csdn.net')),
         ],
       ),
     );

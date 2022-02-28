@@ -1,16 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/shop/page/freight_config_page.dart';
-import 'package:flutter_deer/shop/page/input_text_page.dart';
-import 'package:flutter_deer/shop/page/message_page.dart';
-import 'package:flutter_deer/shop/page/select_address_page.dart';
-import 'package:flutter_deer/shop/page/shop_page.dart';
-import 'package:flutter_deer/shop/page/shop_setting_page.dart';
+import 'package:flutter_deer_djzhang/shop/page/freight_config_page.dart';
+import 'package:flutter_deer_djzhang/shop/page/input_text_page.dart';
+import 'package:flutter_deer_djzhang/shop/page/message_page.dart';
+import 'package:flutter_deer_djzhang/shop/page/select_address_page.dart';
+import 'package:flutter_deer_djzhang/shop/page/shop_page.dart';
+import 'package:flutter_deer_djzhang/shop/page/shop_setting_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-
   final Map<String, Widget> map = <String, Widget>{};
-  map['shop_page'] = const ShopPage(isAccessibilityTest: true,);
+  map['shop_page'] = const ShopPage(
+    isAccessibilityTest: true,
+  );
   map['shop_setting_page'] = const ShopSettingPage();
   map['select_address_page'] = const AddressSelectPage();
   map['message_page'] = const MessagePage();

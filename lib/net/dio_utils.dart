@@ -2,8 +2,8 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
-import 'package:flutter_deer/res/constant.dart';
-import 'package:flutter_deer/util/log_utils.dart';
+import 'package:flutter_deer_djzhang/res/constant.dart';
+import 'package:flutter_deer_djzhang/util/log_utils.dart';
 import 'base_entity.dart';
 import 'error_handle.dart';
 
@@ -35,7 +35,6 @@ typedef NetErrorCallback = Function(int code, String msg);
 
 /// @weilu https://github.com/simplezhli
 class DioUtils {
-
   factory DioUtils() => _singleton;
 
   DioUtils._() {
@@ -43,6 +42,7 @@ class DioUtils {
       connectTimeout: _connectTimeout,
       receiveTimeout: _receiveTimeout,
       sendTimeout: _sendTimeout,
+
       /// dio默认json解析，这里指定返回UTF8字符串，自己处理解析。（可也以自定义Transformer实现）
       responseType: ResponseType.plain,
       validateStatus: (_) {
@@ -53,6 +53,7 @@ class DioUtils {
 //      contentType: Headers.formUrlEncodedContentType, // 适用于post form表单提交
     );
     _dio = Dio(_options);
+
     /// Fiddler抓包代理配置 https://www.jianshu.com/p/d831b1f7c45b
 //    (_dio.httpClientAdapter as DefaultHttpClientAdapter).onHttpClientCreate =
 //        (HttpClient client) {
@@ -68,6 +69,7 @@ class DioUtils {
     void addInterceptor(Interceptor interceptor) {
       _dio.interceptors.add(interceptor);
     }
+
     _interceptors.forEach(addInterceptor);
   }
 
@@ -80,7 +82,9 @@ class DioUtils {
   Dio get dio => _dio;
 
   // 数据返回格式统一，统一处理异常
-  Future<BaseEntity<T>> _request<T>(String method, String url, {
+  Future<BaseEntity<T>> _request<T>(
+    String method,
+    String url, {
     Object? data,
     Map<String, dynamic>? queryParameters,
     CancelToken? cancelToken,
@@ -95,14 +99,16 @@ class DioUtils {
     );
     try {
       final String data = response.data.toString();
+
       /// 集成测试无法使用 isolate https://github.com/flutter/flutter/issues/24703
       /// 使用compute条件：数据大于10KB（粗略使用10 * 1024）且当前不是集成测试（后面可能会根据Web环境进行调整）
       /// 主要目的减少不必要的性能开销
       final bool isCompute = !Constant.isDriverTest && data.length > 10 * 1024;
       debugPrint('isCompute:$isCompute');
-      final Map<String, dynamic> _map = isCompute ? await compute(parseData, data) : parseData(data);
+      final Map<String, dynamic> _map =
+          isCompute ? await compute(parseData, data) : parseData(data);
       return BaseEntity<T>.fromJson(_map);
-    } catch(e) {
+    } catch (e) {
       debugPrint(e.toString());
       return BaseEntity<T>(ExceptionHandle.parse_error, '数据解析错误！', null);
     }
@@ -114,7 +120,9 @@ class DioUtils {
     return options;
   }
 
-  Future requestNetwork<T>(Method method, String url, {
+  Future requestNetwork<T>(
+    Method method,
+    String url, {
     NetSuccessCallback<T?>? onSuccess,
     NetErrorCallback? onError,
     Object? params,
@@ -122,7 +130,9 @@ class DioUtils {
     CancelToken? cancelToken,
     Options? options,
   }) {
-    return _request<T>(method.value, url,
+    return _request<T>(
+      method.value,
+      url,
       data: params,
       queryParameters: queryParameters,
       options: options,
@@ -141,7 +151,9 @@ class DioUtils {
   }
 
   /// 统一处理(onSuccess返回T对象，onSuccessList返回 List<T>)
-  void asyncRequestNetwork<T>(Method method, String url, {
+  void asyncRequestNetwork<T>(
+    Method method,
+    String url, {
     NetSuccessCallback<T?>? onSuccess,
     NetErrorCallback? onError,
     Object? params,
@@ -149,13 +161,14 @@ class DioUtils {
     CancelToken? cancelToken,
     Options? options,
   }) {
-    Stream.fromFuture(_request<T>(method.value, url,
+    Stream.fromFuture(_request<T>(
+      method.value,
+      url,
       data: params,
       queryParameters: queryParameters,
       options: options,
       cancelToken: cancelToken,
-    )).asBroadcastStream()
-        .listen((result) {
+    )).asBroadcastStream().listen((result) {
       if (result.code == 0) {
         if (onSuccess != null) {
           onSuccess(result.data);
@@ -190,14 +203,7 @@ Map<String, dynamic> parseData(String data) {
   return json.decode(data) as Map<String, dynamic>;
 }
 
-enum Method {
-  get,
-  post,
-  put,
-  patch,
-  delete,
-  head
-}
+enum Method { get, post, put, patch, delete, head }
 
 /// 使用拓展枚举替代 switch判断取值
 /// https://zhuanlan.zhihu.com/p/98545689

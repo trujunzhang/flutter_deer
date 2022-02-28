@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/demo/navigator/books_app_state.dart';
-import 'package:flutter_deer/demo/navigator/delegate/inner_router_delegate.dart';
+import 'package:flutter_deer_djzhang/demo/navigator/books_app_state.dart';
+import 'package:flutter_deer_djzhang/demo/navigator/delegate/inner_router_delegate.dart';
 
 // Widget that contains the AdaptiveNavigationScaffold
 class AppShell extends StatefulWidget {
-
   const AppShell({
     Key? key,
     required this.appState,
-  }): super(key: key);
+  }) : super(key: key);
 
   final BooksAppState appState;
 

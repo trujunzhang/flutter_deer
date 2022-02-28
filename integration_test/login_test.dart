@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/login/page/login_page.dart';
-import 'package:flutter_deer/login/page/register_page.dart';
-import 'package:flutter_deer/main.dart';
+import 'package:flutter_deer_djzhang/login/page/login_page.dart';
+import 'package:flutter_deer_djzhang/login/page/register_page.dart';
+import 'package:flutter_deer_djzhang/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
-
 ///  flutter drive --driver integration_test/integration_test.dart --target integration_test/login_test.dart
 void main() {
-
   IntegrationTestWidgetsFlutterBinding.ensureInitialized();
 
   group('登录部分：', () {
-
     tearDown(() {
       print('< Success');
     });
 
-    testWidgets('登录页按钮点击',(WidgetTester tester) async {
+    testWidgets('登录页按钮点击', (WidgetTester tester) async {
       runApp(MyApp(home: const LoginPage()));
       await tester.pumpAndSettle();
 
@@ -32,15 +29,17 @@ void main() {
       await tester.tap(find.byKey(const Key('noAccountRegister')));
     });
 
-    testWidgets('注册页测试',(WidgetTester tester) async {
+    testWidgets('注册页测试', (WidgetTester tester) async {
       runApp(MyApp(home: const RegisterPage()));
       await tester.pumpAndSettle();
-      await tester.tap(find.byKey(const Key('getVerificationCode')));/// 无法成功触发事件，需要输入手机号
-      
+      await tester.tap(find.byKey(const Key('getVerificationCode')));
+
+      /// 无法成功触发事件，需要输入手机号
+
       final Finder textField = find.byKey(const Key('phone'));
-      await tester.enterText(textField, '15000000000');  // 输入内容
+      await tester.enterText(textField, '15000000000'); // 输入内容
       await tester.pumpAndSettle();
-      
+
       await tester.tap(find.byKey(const Key('getVerificationCode')));
 
       final Finder textField2 = find.byKey(const Key('vcode'));
@@ -52,7 +51,7 @@ void main() {
       await tester.pumpAndSettle();
 
       await tester.tap(find.byKey(const Key('register'))); // 点击注册
-      
+
       // 清除输入框文字
       await tester.pumpAndSettle();
       expect(find.text('111111'), findsOneWidget);
@@ -63,7 +62,7 @@ void main() {
       await tester.tap(find.byTooltip('Back'));
     }, timeout: const Timeout(Duration(seconds: 30)));
 
-    testWidgets('登录页测试',(WidgetTester tester) async {
+    testWidgets('登录页测试', (WidgetTester tester) async {
       runApp(MyApp(home: const LoginPage()));
       await tester.pumpAndSettle();
       final Finder textField = find.byKey(const Key('phone'));

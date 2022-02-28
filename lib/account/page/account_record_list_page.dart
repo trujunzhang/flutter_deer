@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/widgets/my_app_bar.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/my_app_bar.dart';
 import 'package:sticky_headers/sticky_headers.dart';
 
 /// design/6店铺-账户/index.html#artboard1
 class AccountRecordListPage extends StatefulWidget {
-
   const AccountRecordListPage({Key? key}) : super(key: key);
 
   @override
@@ -22,6 +21,7 @@ class _AccountRecordListPageState extends State<AccountRecordListPage> {
       ),
       body: ListView.builder(
         itemCount: 8,
+
         /// 将item默认合并的语义拆开，自行组合， 另一种方式见 withdrawal_record_list_page.dart
         addSemanticIndexes: false,
         itemBuilder: (_, int index) {
@@ -40,7 +40,7 @@ class _AccountRecordListPageState extends State<AccountRecordListPage> {
       ),
     );
   }
-  
+
   Widget _buildItem(int index) {
     final List<Container> list = List<Container>.generate(index + 1, (int i) {
       return Container(
@@ -60,30 +60,33 @@ class _AccountRecordListPageState extends State<AccountRecordListPage> {
               Positioned(
                 top: 0.0,
                 right: 0.0,
-                child: Text(i.isEven ? '+10.00' : '-10.00',
-                  style: i.isEven ? TextStyle(
-                    color: Theme.of(context).errorColor,
-                    fontWeight: FontWeight.bold,
-                  ) : AppTextStyles.textBold14,
+                child: Text(
+                  i.isEven ? '+10.00' : '-10.00',
+                  style: i.isEven
+                      ? TextStyle(
+                          color: Theme.of(context).errorColor,
+                          fontWeight: FontWeight.bold,
+                        )
+                      : AppTextStyles.textBold14,
                 ),
               ),
               Positioned(
                 bottom: 0.0,
                 left: 0.0,
-                child: Text(i.isEven ? '18:20:10' : '08:20:11', style: Theme.of(context).textTheme.subtitle2),
+                child: Text(i.isEven ? '18:20:10' : '08:20:11',
+                    style: Theme.of(context).textTheme.subtitle2),
               ),
               Positioned(
                 bottom: 0.0,
                 right: 0.0,
-                child: Text('余额：20.00', style: Theme.of(context).textTheme.subtitle2),
+                child: Text('余额：20.00',
+                    style: Theme.of(context).textTheme.subtitle2),
               ),
             ],
           ),
         ),
       );
     });
-    return Column(
-      children: list
-    );
+    return Column(children: list);
   }
 }

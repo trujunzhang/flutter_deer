@@ -1,30 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/util/toast_utils.dart';
-import 'package:flutter_deer/widgets/base_dialog.dart';
-import 'package:flutter_deer/widgets/load_image.dart';
-
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/util/toast_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/base_dialog.dart';
+import 'package:flutter_deer_djzhang/widgets/load_image.dart';
 
 /// design/7店铺-店铺配置/index.html#artboard10
 class PayTypeDialog extends StatefulWidget {
-
   const PayTypeDialog({
     Key? key,
     this.value,
     required this.onPressed,
-  }) : super(key : key);
+  }) : super(key: key);
 
   final List<int>? value;
   final Function(List<int>) onPressed;
-  
+
   @override
   _PayTypeDialog createState() => _PayTypeDialog();
-  
 }
 
 class _PayTypeDialog extends State<PayTypeDialog> {
-
   late List<int> _selectValue;
   final List<String> _list = <String>['线上支付', '对公转账', '货到付款'];
 
@@ -41,7 +37,10 @@ class _PayTypeDialog extends State<PayTypeDialog> {
               Expanded(
                 child: Text(_list[index]),
               ),
-              LoadAssetImage(_selectValue.contains(index) ? 'shop/xz' : 'shop/xztm', width: 16.0, height: 16.0),
+              LoadAssetImage(
+                  _selectValue.contains(index) ? 'shop/xz' : 'shop/xztm',
+                  width: 16.0,
+                  height: 16.0),
               Gaps.hGap16,
             ],
           ),
@@ -64,16 +63,15 @@ class _PayTypeDialog extends State<PayTypeDialog> {
       ),
     );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return BaseDialog(
       title: '支付方式(多选)',
       child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        mainAxisSize: MainAxisSize.min,
-        children: List.generate(_list.length, (i) => _buildItem(i))
-      ),
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisSize: MainAxisSize.min,
+          children: List.generate(_list.length, (i) => _buildItem(i))),
       onPressed: () {
         NavigatorUtils.goBack(context);
         widget.onPressed(_selectValue);

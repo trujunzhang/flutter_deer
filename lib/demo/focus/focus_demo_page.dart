@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
-
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
 
 /// 博客：https://weilu.blog.csdn.net/article/details/107132031
 class FocusDemoPage extends StatefulWidget {
@@ -14,10 +13,8 @@ class FocusDemoPage extends StatefulWidget {
 }
 
 class _FocusDemoPageState extends State<FocusDemoPage> {
-
-
   final FocusNode _focusNode = FocusNode();
-  
+
   @override
   void dispose() {
     _focusNode.dispose();
@@ -57,7 +54,8 @@ class _FocusDemoPageState extends State<FocusDemoPage> {
               Navigator.push<FocusDemoPage>(
                 context,
                 MaterialPageRoute<FocusDemoPage>(
-                  builder: (BuildContext context) => const FocusDemoPage(title: 'Test Page'),
+                  builder: (BuildContext context) =>
+                      const FocusDemoPage(title: 'Test Page'),
                 ),
               );
             },
@@ -65,6 +63,5 @@ class _FocusDemoPageState extends State<FocusDemoPage> {
         ],
       ),
     );
-  } 
-
+  }
 }

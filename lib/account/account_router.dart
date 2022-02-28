@@ -1,5 +1,5 @@
 import 'package:fluro/fluro.dart';
-import 'package:flutter_deer/routers/i_router.dart';
+import 'package:flutter_deer_djzhang/routers/i_router.dart';
 
 import 'page/account_page.dart';
 import 'page/account_record_list_page.dart';
@@ -13,9 +13,7 @@ import 'page/withdrawal_password_page.dart';
 import 'page/withdrawal_record_list_page.dart';
 import 'page/withdrawal_result_page.dart';
 
-
-class AccountRouter implements IRouterProvider{
-
+class AccountRouter implements IRouterProvider {
   static String accountPage = '/account';
   static String accountRecordListPage = '/account/recordList';
   static String addWithdrawalAccountPage = '/account/addWithdrawal';
@@ -27,23 +25,39 @@ class AccountRouter implements IRouterProvider{
   static String withdrawalPasswordPage = '/account/withdrawalPassword';
   static String withdrawalRecordListPage = '/account/withdrawalRecordList';
   static String withdrawalResultPage = '/account/withdrawalResult';
-  
+
   @override
   void initRouter(FluroRouter router) {
-    router.define(accountPage, handler: Handler(handlerFunc: (_, __) => const AccountPage()));
-    router.define(accountRecordListPage, handler: Handler(handlerFunc: (_, __) => const AccountRecordListPage()));
-    router.define(addWithdrawalAccountPage, handler: Handler(handlerFunc: (_, __) => const AddWithdrawalAccountPage()));
-    router.define(bankSelectPage, handler: Handler(handlerFunc: (_, Map<String, List<String>> params) {
+    router.define(accountPage,
+        handler: Handler(handlerFunc: (_, __) => const AccountPage()));
+    router.define(accountRecordListPage,
+        handler:
+            Handler(handlerFunc: (_, __) => const AccountRecordListPage()));
+    router.define(addWithdrawalAccountPage,
+        handler:
+            Handler(handlerFunc: (_, __) => const AddWithdrawalAccountPage()));
+    router.define(bankSelectPage,
+        handler: Handler(handlerFunc: (_, Map<String, List<String>> params) {
       final int type = int.parse(params['type']?.first ?? '0');
       return BankSelectPage(type: type);
     }));
-    router.define(citySelectPage, handler: Handler(handlerFunc: (_, __) => const CitySelectPage()));
-    router.define(withdrawalAccountListPage, handler: Handler(handlerFunc: (_, __) => const WithdrawalAccountListPage()));
-    router.define(withdrawalAccountPage, handler: Handler(handlerFunc: (_, __) => const WithdrawalAccountPage()));
-    router.define(withdrawalPage, handler: Handler(handlerFunc: (_, __) => const WithdrawalPage()));
-    router.define(withdrawalPasswordPage, handler: Handler(handlerFunc: (_, __) => const WithdrawalPasswordPage()));
-    router.define(withdrawalRecordListPage, handler: Handler(handlerFunc: (_, __) => const WithdrawalRecordListPage()));
-    router.define(withdrawalResultPage, handler: Handler(handlerFunc: (_, __) => const WithdrawalResultPage()));
+    router.define(citySelectPage,
+        handler: Handler(handlerFunc: (_, __) => const CitySelectPage()));
+    router.define(withdrawalAccountListPage,
+        handler:
+            Handler(handlerFunc: (_, __) => const WithdrawalAccountListPage()));
+    router.define(withdrawalAccountPage,
+        handler:
+            Handler(handlerFunc: (_, __) => const WithdrawalAccountPage()));
+    router.define(withdrawalPage,
+        handler: Handler(handlerFunc: (_, __) => const WithdrawalPage()));
+    router.define(withdrawalPasswordPage,
+        handler:
+            Handler(handlerFunc: (_, __) => const WithdrawalPasswordPage()));
+    router.define(withdrawalRecordListPage,
+        handler:
+            Handler(handlerFunc: (_, __) => const WithdrawalRecordListPage()));
+    router.define(withdrawalResultPage,
+        handler: Handler(handlerFunc: (_, __) => const WithdrawalResultPage()));
   }
-  
 }

@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/routers/routers.dart';
-import 'package:flutter_deer/widgets/my_app_bar.dart';
-import 'package:flutter_deer/widgets/load_image.dart';
-import 'package:flutter_deer/widgets/my_button.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/routers/routers.dart';
+import 'package:flutter_deer_djzhang/widgets/my_app_bar.dart';
+import 'package:flutter_deer_djzhang/widgets/load_image.dart';
+import 'package:flutter_deer_djzhang/widgets/my_button.dart';
 
 /// design/2店铺审核/index.html#artboard2
 class StoreAuditResultPage extends StatefulWidget {
-
   const StoreAuditResultPage({Key? key}) : super(key: key);
 
   @override
@@ -28,7 +27,8 @@ class _StoreAuditResultPageState extends State<StoreAuditResultPage> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
             Gaps.vGap50,
-            const LoadAssetImage('store/icon_success',
+            const LoadAssetImage(
+              'store/icon_success',
               width: 80.0,
               height: 80.0,
             ),

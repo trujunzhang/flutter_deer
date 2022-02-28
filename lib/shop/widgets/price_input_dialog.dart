@@ -1,33 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/util/input_formatter/number_text_input_formatter.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/util/toast_utils.dart';
-import 'package:flutter_deer/widgets/base_dialog.dart';
-
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/util/input_formatter/number_text_input_formatter.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
+import 'package:flutter_deer_djzhang/util/toast_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/base_dialog.dart';
 
 /// design/7店铺-店铺配置/index.html#artboard3
 class PriceInputDialog extends StatefulWidget {
-
   const PriceInputDialog({
     Key? key,
     this.title,
     this.inputMaxPrice = 100000,
     required this.onPressed,
-  }) : super(key : key);
+  }) : super(key: key);
 
   final String? title;
   final double inputMaxPrice;
   final Function(String) onPressed;
-  
+
   @override
   _PriceInputDialog createState() => _PriceInputDialog();
-  
 }
 
 class _PriceInputDialog extends State<PriceInputDialog> {
-
   final TextEditingController _controller = TextEditingController();
 
   @override
@@ -35,7 +31,7 @@ class _PriceInputDialog extends State<PriceInputDialog> {
     _controller.dispose();
     super.dispose();
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return BaseDialog(
@@ -56,7 +52,9 @@ class _PriceInputDialog extends State<PriceInputDialog> {
           //style: TextStyles.textDark14,
           keyboardType: const TextInputType.numberWithOptions(decimal: true),
           // 金额限制数字格式
-          inputFormatters: [UsNumberTextInputFormatter(max: widget.inputMaxPrice)],
+          inputFormatters: [
+            UsNumberTextInputFormatter(max: widget.inputMaxPrice)
+          ],
           decoration: InputDecoration(
             isDense: true,
             contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -68,7 +66,7 @@ class _PriceInputDialog extends State<PriceInputDialog> {
       ),
       onPressed: () {
         if (_controller.text.isEmpty) {
-          Toast.show('请输入${widget.title}');         
+          Toast.show('请输入${widget.title}');
           return;
         }
         NavigatorUtils.goBack(context);

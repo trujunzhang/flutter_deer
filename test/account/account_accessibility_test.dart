@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/account/page/account_page.dart';
-import 'package:flutter_deer/account/page/account_record_list_page.dart';
-import 'package:flutter_deer/account/page/add_withdrawal_account_page.dart';
-import 'package:flutter_deer/account/page/bank_select_page.dart';
-import 'package:flutter_deer/account/page/city_select_page.dart';
-import 'package:flutter_deer/account/page/withdrawal_account_list_page.dart';
-import 'package:flutter_deer/account/page/withdrawal_account_page.dart';
-import 'package:flutter_deer/account/page/withdrawal_page.dart';
-import 'package:flutter_deer/account/page/withdrawal_password_page.dart';
-import 'package:flutter_deer/account/page/withdrawal_record_list_page.dart';
-import 'package:flutter_deer/account/page/withdrawal_result_page.dart';
-import 'package:flutter_deer/setting/provider/theme_provider.dart';
+import 'package:flutter_deer_djzhang/account/page/account_page.dart';
+import 'package:flutter_deer_djzhang/account/page/account_record_list_page.dart';
+import 'package:flutter_deer_djzhang/account/page/add_withdrawal_account_page.dart';
+import 'package:flutter_deer_djzhang/account/page/bank_select_page.dart';
+import 'package:flutter_deer_djzhang/account/page/city_select_page.dart';
+import 'package:flutter_deer_djzhang/account/page/withdrawal_account_list_page.dart';
+import 'package:flutter_deer_djzhang/account/page/withdrawal_account_page.dart';
+import 'package:flutter_deer_djzhang/account/page/withdrawal_page.dart';
+import 'package:flutter_deer_djzhang/account/page/withdrawal_password_page.dart';
+import 'package:flutter_deer_djzhang/account/page/withdrawal_record_list_page.dart';
+import 'package:flutter_deer_djzhang/account/page/withdrawal_result_page.dart';
+import 'package:flutter_deer_djzhang/setting/provider/theme_provider.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  
   final Map<String, Widget> map = <String, Widget>{};
   map['account_page'] = const AccountPage();
   map['account_record_list_page'] = const AccountRecordListPage();
@@ -27,7 +26,7 @@ void main() {
   map['withdrawal_password_page'] = const WithdrawalPasswordPage();
   map['withdrawal_record_list_page'] = const WithdrawalRecordListPage();
   map['withdrawal_result_page'] = const WithdrawalResultPage();
-  
+
   group('account => 检测页面可点击目标大小是否大于44 * 44', () {
     map.forEach((name, page) {
       testWidgets(name, (WidgetTester tester) async {
@@ -74,11 +73,11 @@ void main() {
           await tester.pumpWidget(MaterialApp(theme: theme, home: page));
           await expectLater(tester, meetsGuideline(textContrastGuideline));
           handle.dispose();
-        }, skip:
-            name == 'add_withdrawal_account_page' ||
-            name == 'withdrawal_page' ||
-            name == 'withdrawal_result_page'
-        ); // https://github.com/flutter/flutter/issues/21647
+        },
+            skip: name == 'add_withdrawal_account_page' ||
+                name == 'withdrawal_page' ||
+                name ==
+                    'withdrawal_result_page'); // https://github.com/flutter/flutter/issues/21647
       });
     }
   });

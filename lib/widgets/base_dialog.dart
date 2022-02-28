@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/util/device_utils.dart';
-import 'package:flutter_deer/widgets/my_button.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/util/device_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/my_button.dart';
 
 /// 自定义dialog的模板
 class BaseDialog extends StatelessWidget {
-
-  const BaseDialog({
-    Key? key,
-    this.title,
-    this.onPressed,
-    this.hiddenTitle = false,
-    required this.child
-  }) : super(key : key);
+  const BaseDialog(
+      {Key? key,
+      this.title,
+      this.onPressed,
+      this.hiddenTitle = false,
+      required this.child})
+      : super(key: key);
 
   final String? title;
   final VoidCallback? onPressed;
@@ -22,7 +21,6 @@ class BaseDialog extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     final Widget dialogTitle = Visibility(
       visible: !hiddenTitle,
       child: Padding(
@@ -53,7 +51,7 @@ class BaseDialog extends StatelessWidget {
         ),
       ],
     );
-    
+
     final Widget content = Material(
       borderRadius: BorderRadius.circular(8.0),
       child: Column(
@@ -104,18 +102,17 @@ class BaseDialog extends StatelessWidget {
 }
 
 class _DialogButton extends StatelessWidget {
-  
   const _DialogButton({
     Key? key,
     required this.text,
     this.textColor,
     this.onPressed,
-  }): super(key: key);
-  
+  }) : super(key: key);
+
   final String text;
   final Color? textColor;
   final VoidCallback? onPressed;
-  
+
   @override
   Widget build(BuildContext context) {
     return Expanded(

@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/constant.dart';
-import 'package:flutter_deer/setting/provider/theme_provider.dart';
+import 'package:flutter_deer_djzhang/res/constant.dart';
+import 'package:flutter_deer_djzhang/setting/provider/theme_provider.dart';
 import 'package:sp_util/sp_util.dart';
-import 'package:flutter_deer/widgets/my_app_bar.dart';
+import 'package:flutter_deer_djzhang/widgets/my_app_bar.dart';
 import 'package:provider/provider.dart';
 
 class ThemePage extends StatefulWidget {
-
   const ThemePage({Key? key}) : super(key: key);
 
   @override
@@ -14,14 +13,13 @@ class ThemePage extends StatefulWidget {
 }
 
 class _ThemePageState extends State<ThemePage> {
-
   final List<String> _list = <String>['跟随系统', '开启', '关闭'];
 
   @override
   Widget build(BuildContext context) {
     final String? theme = SpUtil.getString(Constant.theme);
     String themeMode;
-    switch(theme) {
+    switch (theme) {
       case 'Dark':
         themeMode = _list[1];
         break;
@@ -42,7 +40,9 @@ class _ThemePageState extends State<ThemePage> {
         itemBuilder: (_, int index) {
           return InkWell(
             onTap: () {
-              final ThemeMode themeMode = index == 0 ? ThemeMode.system : (index == 1 ? ThemeMode.dark : ThemeMode.light);
+              final ThemeMode themeMode = index == 0
+                  ? ThemeMode.system
+                  : (index == 1 ? ThemeMode.dark : ThemeMode.light);
 //              Provider.of<ThemeProvider>(context, listen: false).setTheme(themeMode);
               /// 与上方等价，provider 4.1.0添加的拓展方法
               context.read<ThemeProvider>().setTheme(themeMode);

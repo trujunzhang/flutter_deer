@@ -1,8 +1,8 @@
 import 'dart:math' as math show sin, pi, sqrt;
 
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
 
 /// https://medium.com/flutterdevs/ripple-animation-in-flutter-3421cbd66a18
 class RipplesAnimationPage extends StatefulWidget {
@@ -19,8 +19,8 @@ class RipplesAnimationPage extends StatefulWidget {
   _RipplesAnimationState createState() => _RipplesAnimationState();
 }
 
-class _RipplesAnimationState extends State<RipplesAnimationPage> with TickerProviderStateMixin {
-
+class _RipplesAnimationState extends State<RipplesAnimationPage>
+    with TickerProviderStateMixin {
   late AnimationController _controller;
 
   @override
@@ -58,7 +58,11 @@ class _RipplesAnimationState extends State<RipplesAnimationPage> with TickerProv
                 curve: const PulsateCurve(),
               ),
             ),
-            child: const Icon(Icons.speaker_phone, size: 44, color: Colors.white,),
+            child: const Icon(
+              Icons.speaker_phone,
+              size: 44,
+              color: Colors.white,
+            ),
           ),
         ),
       ),
@@ -90,8 +94,8 @@ class _RipplesAnimationState extends State<RipplesAnimationPage> with TickerProv
 }
 
 class CirclePainter extends CustomPainter {
-
-  CirclePainter(this._animation, {
+  CirclePainter(
+    this._animation, {
     required this.color,
   }) : super(repaint: _animation);
 

@@ -2,33 +2,35 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:sp_util/sp_util.dart';
-import 'package:flutter_deer/res/constant.dart';
+import 'package:flutter_deer_djzhang/res/constant.dart';
 import 'package:flutter_gen/gen_l10n/deer_localizations.dart';
-import 'package:flutter_deer/login/widgets/my_text_field.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/store/store_router.dart';
-import 'package:flutter_deer/util/change_notifier_manage.dart';
-import 'package:flutter_deer/util/other_utils.dart';
-import 'package:flutter_deer/widgets/my_app_bar.dart';
-import 'package:flutter_deer/widgets/my_button.dart';
-import 'package:flutter_deer/widgets/my_scroll_view.dart';
+import 'package:flutter_deer_djzhang/login/widgets/my_text_field.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/store/store_router.dart';
+import 'package:flutter_deer_djzhang/util/change_notifier_manage.dart';
+import 'package:flutter_deer_djzhang/util/other_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/my_app_bar.dart';
+import 'package:flutter_deer_djzhang/widgets/my_button.dart';
+import 'package:flutter_deer_djzhang/widgets/my_scroll_view.dart';
 
 import '../login_router.dart';
 
 /// design/1注册登录/index.html
 class LoginPage extends StatefulWidget {
-
   const LoginPage({Key? key}) : super(key: key);
 
   @override
   _LoginPageState createState() => _LoginPageState();
 }
 
-class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPage> {
+class _LoginPageState extends State<LoginPage>
+    with ChangeNotifierMixin<LoginPage> {
   //定义一个controller
-  final TextEditingController _nameController = TextEditingController(text: 'trujunzhang');
-  final TextEditingController _passwordController = TextEditingController(text: 'wanghao123456');
+  final TextEditingController _nameController =
+      TextEditingController(text: 'trujunzhang');
+  final TextEditingController _passwordController =
+      TextEditingController(text: 'wanghao123456');
   final FocusNode _nodeText1 = FocusNode();
   final FocusNode _nodeText2 = FocusNode();
   bool _clickable = false;
@@ -49,7 +51,8 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
     super.initState();
     WidgetsBinding.instance!.addPostFrameCallback((_) {
       /// 显示状态栏和导航栏
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,
+          overlays: [SystemUiOverlay.top, SystemUiOverlay.bottom]);
     });
     // _nameController.text = SpUtil.getString(Constant.phone).nullSafe;
   }
@@ -72,12 +75,12 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
       });
     }
   }
-  
+
   void _login() {
     SpUtil.putString(Constant.phone, _nameController.text);
     NavigatorUtils.push(context, StoreRouter.auditPage);
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -89,7 +92,8 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
         },
       ),
       body: MyScrollView(
-        keyboardConfig: Utils.getKeyboardActionsConfig(context, <FocusNode>[_nodeText1, _nodeText2]),
+        keyboardConfig: Utils.getKeyboardActionsConfig(
+            context, <FocusNode>[_nodeText1, _nodeText2]),
         padding: const EdgeInsets.only(left: 16.0, right: 16.0, top: 20.0),
         children: _buildBody,
       ),
@@ -97,61 +101,60 @@ class _LoginPageState extends State<LoginPage> with ChangeNotifierMixin<LoginPag
   }
 
   List<Widget> get _buildBody => <Widget>[
-    Text(
-      DeerLocalizations.of(context)!.passwordLogin,
-      style: AppTextStyles.textBold26,
-    ),
-    Gaps.vGap16,
-    MyTextField(
-      key: const Key('phone'),
-      focusNode: _nodeText1,
-      controller: _nameController,
-      maxLength: 11,
-      keyboardType: TextInputType.phone,
-      hintText: DeerLocalizations.of(context)!.inputUsernameHint,
-    ),
-    Gaps.vGap8,
-    MyTextField(
-      key: const Key('password'),
-      keyName: 'password',
-      focusNode: _nodeText2,
-      isInputPwd: true,
-      controller: _passwordController,
-      keyboardType: TextInputType.visiblePassword,
-      maxLength: 16,
-      hintText: DeerLocalizations.of(context)!.inputPasswordHint,
-    ),
-    Gaps.vGap24,
-    MyButton(
-      key: const Key('login'),
-      onPressed: _clickable ? _login : null,
-      text: DeerLocalizations.of(context)!.login,
-    ),
-    Container(
-      height: 40.0,
-      alignment: Alignment.centerRight,
-      child: GestureDetector(
-        child: Text(
-          DeerLocalizations.of(context)!.forgotPasswordLink,
-          key: const Key('forgotPassword'),
-          style: Theme.of(context).textTheme.subtitle2,
+        Text(
+          DeerLocalizations.of(context)!.passwordLogin,
+          style: AppTextStyles.textBold26,
         ),
-        onTap: () => NavigatorUtils.push(context, LoginRouter.resetPasswordPage),
-      ),
-    ),
-    Gaps.vGap16,
-    Container(
-      alignment: Alignment.center,
-      child: GestureDetector(
-        child: Text(
-          DeerLocalizations.of(context)!.noAccountRegisterLink,
-          key: const Key('noAccountRegister'),
-          style: TextStyle(
-            color: Theme.of(context).primaryColor
+        Gaps.vGap16,
+        MyTextField(
+          key: const Key('phone'),
+          focusNode: _nodeText1,
+          controller: _nameController,
+          maxLength: 11,
+          keyboardType: TextInputType.phone,
+          hintText: DeerLocalizations.of(context)!.inputUsernameHint,
+        ),
+        Gaps.vGap8,
+        MyTextField(
+          key: const Key('password'),
+          keyName: 'password',
+          focusNode: _nodeText2,
+          isInputPwd: true,
+          controller: _passwordController,
+          keyboardType: TextInputType.visiblePassword,
+          maxLength: 16,
+          hintText: DeerLocalizations.of(context)!.inputPasswordHint,
+        ),
+        Gaps.vGap24,
+        MyButton(
+          key: const Key('login'),
+          onPressed: _clickable ? _login : null,
+          text: DeerLocalizations.of(context)!.login,
+        ),
+        Container(
+          height: 40.0,
+          alignment: Alignment.centerRight,
+          child: GestureDetector(
+            child: Text(
+              DeerLocalizations.of(context)!.forgotPasswordLink,
+              key: const Key('forgotPassword'),
+              style: Theme.of(context).textTheme.subtitle2,
+            ),
+            onTap: () =>
+                NavigatorUtils.push(context, LoginRouter.resetPasswordPage),
           ),
         ),
-        onTap: () => NavigatorUtils.push(context, LoginRouter.registerPage),
-      )
-    )
-  ];
+        Gaps.vGap16,
+        Container(
+            alignment: Alignment.center,
+            child: GestureDetector(
+              child: Text(
+                DeerLocalizations.of(context)!.noAccountRegisterLink,
+                key: const Key('noAccountRegister'),
+                style: TextStyle(color: Theme.of(context).primaryColor),
+              ),
+              onTap: () =>
+                  NavigatorUtils.push(context, LoginRouter.registerPage),
+            ))
+      ];
 }

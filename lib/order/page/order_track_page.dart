@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/widgets/my_app_bar.dart';
-import 'package:flutter_deer/widgets/my_scroll_view.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/widgets/my_app_bar.dart';
+import 'package:flutter_deer_djzhang/widgets/my_scroll_view.dart';
 
 /// design/3订单/index.html#artboard10
 class OrderTrackPage extends StatefulWidget {

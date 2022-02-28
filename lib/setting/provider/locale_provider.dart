@@ -3,13 +3,12 @@ import 'dart:ui';
 import 'package:sp_util/sp_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/constant.dart';
+import 'package:flutter_deer_djzhang/res/constant.dart';
 
 class LocaleProvider extends ChangeNotifier {
-
   Locale? get locale {
     final String locale = SpUtil.getString(Constant.locale) ?? '';
-    switch(locale) {
+    switch (locale) {
       case 'zh':
         return const Locale('zh', 'CN');
       case 'en':
@@ -23,5 +22,4 @@ class LocaleProvider extends ChangeNotifier {
     SpUtil.putString(Constant.locale, locale);
     notifyListeners();
   }
-
 }

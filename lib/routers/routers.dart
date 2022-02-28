@@ -1,21 +1,20 @@
 import 'package:fluro/fluro.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/account/account_router.dart';
-import 'package:flutter_deer/goods/goods_router.dart';
-import 'package:flutter_deer/routers/not_found_page.dart';
-import 'package:flutter_deer/login/login_router.dart';
-import 'package:flutter_deer/order/order_router.dart';
-import 'package:flutter_deer/routers/i_router.dart';
-import 'package:flutter_deer/setting/setting_router.dart';
+import 'package:flutter_deer_djzhang/account/account_router.dart';
+import 'package:flutter_deer_djzhang/goods/goods_router.dart';
+import 'package:flutter_deer_djzhang/routers/not_found_page.dart';
+import 'package:flutter_deer_djzhang/login/login_router.dart';
+import 'package:flutter_deer_djzhang/order/order_router.dart';
+import 'package:flutter_deer_djzhang/routers/i_router.dart';
+import 'package:flutter_deer_djzhang/setting/setting_router.dart';
 
-import 'package:flutter_deer/home/home_page.dart';
-import 'package:flutter_deer/home/webview_page.dart';
-import 'package:flutter_deer/shop/shop_router.dart';
-import 'package:flutter_deer/statistics/statistics_router.dart';
-import 'package:flutter_deer/store/store_router.dart';
+import 'package:flutter_deer_djzhang/home/home_page.dart';
+import 'package:flutter_deer_djzhang/home/webview_page.dart';
+import 'package:flutter_deer_djzhang/shop/shop_router.dart';
+import 'package:flutter_deer_djzhang/statistics/statistics_router.dart';
+import 'package:flutter_deer_djzhang/store/store_router.dart';
 
 class Routes {
-
   static String home = '/home';
   static String webViewPage = '/webView';
 
@@ -26,14 +25,17 @@ class Routes {
   static void initRoutes() {
     /// 指定路由跳转错误返回页
     router.notFoundHandler = Handler(
-      handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
-        debugPrint('未找到目标页');
-        return const NotFoundPage();
-      });
+        handlerFunc: (BuildContext? context, Map<String, List<String>> params) {
+      debugPrint('未找到目标页');
+      return const NotFoundPage();
+    });
 
-    router.define(home, handler: Handler(
-      handlerFunc: (BuildContext? context, Map<String, List<String>> params) => const Home()));
-    
+    router.define(home,
+        handler: Handler(
+            handlerFunc:
+                (BuildContext? context, Map<String, List<String>> params) =>
+                    const Home()));
+
     router.define(webViewPage, handler: Handler(handlerFunc: (_, params) {
       final String title = params['title']?.first ?? '';
       final String url = params['url']?.first ?? '';
@@ -41,6 +43,7 @@ class Routes {
     }));
 
     _listRouter.clear();
+
     /// 各自路由由各自模块管理，统一在此添加初始化
     _listRouter.add(ShopRouter());
     _listRouter.add(LoginRouter());
@@ -50,11 +53,12 @@ class Routes {
     _listRouter.add(AccountRouter());
     _listRouter.add(SettingRouter());
     _listRouter.add(StatisticsRouter());
-  
+
     /// 初始化路由
     void initRouter(IRouterProvider routerProvider) {
       routerProvider.initRouter(router);
     }
+
     _listRouter.forEach(initRouter);
   }
 }

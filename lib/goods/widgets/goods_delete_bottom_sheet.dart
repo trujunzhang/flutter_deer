@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/widgets/my_button.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/widgets/my_button.dart';
 
 /// design/4商品/index.html#artboard2
 class GoodsDeleteBottomSheet extends StatelessWidget {
-  
   const GoodsDeleteBottomSheet({
     Key? key,
     required this.onTapDelete,
-  }): super(key: key);
+  }) : super(key: key);
 
   final VoidCallback onTapDelete;
-  
+
   @override
   Widget build(BuildContext context) {
     return Material(

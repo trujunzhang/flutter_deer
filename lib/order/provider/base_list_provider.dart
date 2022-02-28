@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/widgets/state_layout.dart';
+import 'package:flutter_deer_djzhang/widgets/state_layout.dart';
 
 class BaseListProvider<T> extends ChangeNotifier {
-
   final List<T> _list = <T>[];
   List<T> get list => _list;
 

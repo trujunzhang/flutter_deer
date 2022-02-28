@@ -1,17 +1,15 @@
-
 import 'package:azlistview/azlistview.dart';
-import 'package:flutter_deer/generated/json/base/json_convert_content.dart';
+import 'package:flutter_deer_djzhang/generated/json/base/json_convert_content.dart';
 
 class BankEntity with JsonConvert<BankEntity>, ISuspensionBean {
+  BankEntity({this.id, this.bankName, this.firstLetter});
 
-	BankEntity({this.id, this.bankName, this.firstLetter});
+  int? id;
+  String? bankName;
+  String? firstLetter;
 
-	int? id;
-	String? bankName;
-	String? firstLetter;
-
-	@override
+  @override
   String getSuspensionTag() {
-		return firstLetter ?? '';
+    return firstLetter ?? '';
   }
 }

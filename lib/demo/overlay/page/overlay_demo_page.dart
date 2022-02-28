@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/demo/overlay/bottom_navigation/my_bottom_navigation_bar.dart';
-import 'package:flutter_deer/demo/overlay/page/test_page.dart';
-import 'package:flutter_deer/demo/overlay/route/application.dart';
-
+import 'package:flutter_deer_djzhang/demo/overlay/bottom_navigation/my_bottom_navigation_bar.dart';
+import 'package:flutter_deer_djzhang/demo/overlay/page/test_page.dart';
+import 'package:flutter_deer_djzhang/demo/overlay/route/application.dart';
 
 /// 需求说明： 底部固定悬浮BottomNavigationBar，点击切换时有移动动画。
 /// 进入二级页面图标全灰，返回一级页面返回之前状态。
@@ -10,7 +9,6 @@ import 'package:flutter_deer/demo/overlay/route/application.dart';
 ///
 /// 本例包含自定义BottomNavigationBar，路由监听及Overlay悬浮用法。
 class OverlayDemoPage extends StatefulWidget {
-
   const OverlayDemoPage({Key? key}) : super(key: key);
 
   @override
@@ -18,7 +16,6 @@ class OverlayDemoPage extends StatefulWidget {
 }
 
 class _OverlayDemoPageState extends State<OverlayDemoPage> {
-
   OverlayEntry? _overlayEntry;
 
   @override
@@ -28,11 +25,12 @@ class _OverlayDemoPageState extends State<OverlayDemoPage> {
       _overlayEntry = OverlayEntry(
         builder: (context) => _buildBottomNavigation(context),
       );
+
       /// 添加悬浮
       Overlay.of(context)?.insert(_overlayEntry!);
     });
   }
-  
+
   @override
   void dispose() {
     /// 移除悬浮
@@ -44,16 +42,17 @@ class _OverlayDemoPageState extends State<OverlayDemoPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Overlay Demo'),
-      ),
-      body: Container(
-        color: Colors.amber,
-        child: Center(
-          child: GestureDetector(
+        appBar: AppBar(
+          title: const Text('Overlay Demo'),
+        ),
+        body: Container(
+          color: Colors.amber,
+          child: Center(
+              child: GestureDetector(
             child: const Padding(
               padding: EdgeInsets.symmetric(horizontal: 26.0),
-              child: Text('功能说明：\n1.底部固定悬浮BottomNavigationBar点击切换时有移动动画。\n2.进入二级页面图标全灰，返回一级页面返回之前状态。\n3.二级页面内点击按钮，直接返回一级页面。\n\n点击文字进入下一页->', 
+              child: Text(
+                '功能说明：\n1.底部固定悬浮BottomNavigationBar点击切换时有移动动画。\n2.进入二级页面图标全灰，返回一级页面返回之前状态。\n3.二级页面内点击按钮，直接返回一级页面。\n\n点击文字进入下一页->',
                 style: TextStyle(fontSize: 15.0),
               ),
             ),
@@ -65,12 +64,10 @@ class _OverlayDemoPageState extends State<OverlayDemoPage> {
                 ),
               );
             },
-          )          
-        ),
-      )
-    );
-  } 
-  
+          )),
+        ));
+  }
+
   Widget _buildBottomNavigation(BuildContext context) {
     final double width = MediaQuery.of(context).size.width;
     return Positioned(
@@ -86,7 +83,9 @@ class _OverlayDemoPageState extends State<OverlayDemoPage> {
             void removeRoute(Route route) {
               Navigator.removeRoute(context, route);
             }
+
             Application.navigatorObserver.list.forEach(removeRoute);
+
             /// 手动清空
             Application.navigatorObserver.list = [];
           },

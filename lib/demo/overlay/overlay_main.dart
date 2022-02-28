@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/demo/overlay/page/overlay_demo_page.dart';
-import 'package:flutter_deer/demo/overlay/route/application.dart';
-import 'package:flutter_deer/demo/overlay/route/my_navigator_observer.dart';
-
+import 'package:flutter_deer_djzhang/demo/overlay/page/overlay_demo_page.dart';
+import 'package:flutter_deer_djzhang/demo/overlay/route/application.dart';
+import 'package:flutter_deer_djzhang/demo/overlay/route/my_navigator_observer.dart';
 
 class OverlayDemo extends StatelessWidget {
-
-  OverlayDemo({Key? key}): super(key: key) {
+  OverlayDemo({Key? key}) : super(key: key) {
     Application.navigatorObserver = MyNavigatorObserver();
   }
   // This widget is the root of your application.
@@ -18,9 +16,7 @@ class OverlayDemo extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const OverlayDemoPage(),
-      navigatorObservers: <NavigatorObserver>[
-        Application.navigatorObserver
-      ],
+      navigatorObservers: <NavigatorObserver>[Application.navigatorObserver],
     );
   }
 }

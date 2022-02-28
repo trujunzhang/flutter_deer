@@ -1,10 +1,9 @@
-import 'package:flutter_deer/mvp/base_page.dart';
-import 'package:flutter_deer/mvp/base_page_presenter.dart';
-import 'package:flutter_deer/mvp/base_presenter.dart';
+import 'package:flutter_deer_djzhang/mvp/base_page.dart';
+import 'package:flutter_deer_djzhang/mvp/base_page_presenter.dart';
+import 'package:flutter_deer_djzhang/mvp/base_presenter.dart';
 
 /// 管理多个Presenter，实现复用。
 class PowerPresenter<IMvpView> extends BasePresenter {
-
   PowerPresenter(BasePageMixin state) {
     _state = state;
   }
@@ -20,7 +19,7 @@ class PowerPresenter<IMvpView> extends BasePresenter {
   void _requestPresenter(BasePagePresenter presenter) {
     presenter.view = _state;
   }
-  
+
   @override
   void deactivate() {
     _presenters.forEach(_deactivate);
@@ -41,10 +40,10 @@ class PowerPresenter<IMvpView> extends BasePresenter {
 
   @override
   void didUpdateWidgets<W>(W oldWidget) {
-
     void _didUpdateWidgets(BasePagePresenter presenter) {
       presenter.didUpdateWidgets<W>(oldWidget);
     }
+
     _presenters.forEach(_didUpdateWidgets);
   }
 
@@ -65,5 +64,4 @@ class PowerPresenter<IMvpView> extends BasePresenter {
   void _initState(BasePagePresenter presenter) {
     presenter.initState();
   }
-
 }

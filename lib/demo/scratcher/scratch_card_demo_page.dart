@@ -1,13 +1,11 @@
-
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/colors.dart';
-import 'package:flutter_deer/res/gaps.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/widgets/load_image.dart';
+import 'package:flutter_deer_djzhang/res/colors.dart';
+import 'package:flutter_deer_djzhang/res/gaps.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/load_image.dart';
 import 'package:scratcher/scratcher.dart';
 
 class ScratchCardDemoPage extends StatefulWidget {
-
   const ScratchCardDemoPage({Key? key}) : super(key: key);
 
   @override
@@ -15,7 +13,6 @@ class ScratchCardDemoPage extends StatefulWidget {
 }
 
 class _ScratchCardDemoPageState extends State<ScratchCardDemoPage> {
-
   final GlobalKey<ScratcherState> scratchKey = GlobalKey<ScratcherState>();
 
   @override
@@ -33,7 +30,8 @@ class _ScratchCardDemoPageState extends State<ScratchCardDemoPage> {
             brushSize: 20,
             threshold: 50,
             color: Colors.grey,
-            onChange: (value) => print('Scratch progress: ${value.toStringAsFixed(2)}%'),
+            onChange: (value) =>
+                print('Scratch progress: ${value.toStringAsFixed(2)}%'),
             onThreshold: () {
               /// 这里设置刮开50%，就揭开所有。
               print('Threshold reached!');
@@ -46,7 +44,9 @@ class _ScratchCardDemoPageState extends State<ScratchCardDemoPage> {
               color: Colors.white,
               height: 200,
               width: 300,
-              child: const LoadAssetImage('logo',),
+              child: const LoadAssetImage(
+                'logo',
+              ),
             ),
           ),
           Gaps.vGap50,

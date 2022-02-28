@@ -1,18 +1,17 @@
 import 'dart:ui';
 
-import 'package:flutter_deer/routers/web_page_transitions.dart';
+import 'package:flutter_deer_djzhang/routers/web_page_transitions.dart';
 import 'package:sp_util/sp_util.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/constant.dart';
-import 'package:flutter_deer/res/resources.dart';
+import 'package:flutter_deer_djzhang/res/constant.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
 
 extension ThemeModeExtension on ThemeMode {
   String get value => <String>['System', 'Light', 'Dark'][index];
 }
 
 class ThemeProvider extends ChangeNotifier {
-  
   void syncTheme() {
     final String theme = SpUtil.getString(Constant.theme) ?? '';
     if (theme.isNotEmpty && theme != ThemeMode.system.value) {
@@ -25,9 +24,9 @@ class ThemeProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  ThemeMode getThemeMode(){
+  ThemeMode getThemeMode() {
     final String theme = SpUtil.getString(Constant.theme) ?? '';
-    switch(theme) {
+    switch (theme) {
       case 'Dark':
         return ThemeMode.dark;
       case 'Light':
@@ -46,7 +45,8 @@ class ThemeProvider extends ChangeNotifier {
       // Tab指示器颜色
       indicatorColor: isDarkMode ? AppColors.dark_app_main : AppColors.app_main,
       // 页面背景色
-      scaffoldBackgroundColor: isDarkMode ? AppColors.dark_bg_color : Colors.white,
+      scaffoldBackgroundColor:
+          isDarkMode ? AppColors.dark_bg_color : Colors.white,
       // 主要用于Material背景色
       canvasColor: isDarkMode ? AppColors.dark_material_bg : Colors.white,
       // 文字选择色（输入框选择文字等）
@@ -63,10 +63,14 @@ class ThemeProvider extends ChangeNotifier {
         subtitle1: isDarkMode ? AppTextStyles.textDark : AppTextStyles.text,
         // Text文字样式
         bodyText2: isDarkMode ? AppTextStyles.textDark : AppTextStyles.text,
-        subtitle2: isDarkMode ? AppTextStyles.textDarkGray12 : AppTextStyles.textGray12,
+        subtitle2: isDarkMode
+            ? AppTextStyles.textDarkGray12
+            : AppTextStyles.textGray12,
       ),
       inputDecorationTheme: InputDecorationTheme(
-        hintStyle: isDarkMode ? AppTextStyles.textHint14 : AppTextStyles.textDarkGray14,
+        hintStyle: isDarkMode
+            ? AppTextStyles.textHint14
+            : AppTextStyles.textDarkGray14,
       ),
       appBarTheme: AppBarTheme(
         elevation: 0.0,
@@ -74,16 +78,15 @@ class ThemeProvider extends ChangeNotifier {
         brightness: isDarkMode ? Brightness.dark : Brightness.light,
       ),
       dividerTheme: DividerThemeData(
-        color: isDarkMode ? AppColors.dark_line : AppColors.line,
-        space: 0.6,
-        thickness: 0.6
-      ),
+          color: isDarkMode ? AppColors.dark_line : AppColors.line,
+          space: 0.6,
+          thickness: 0.6),
       cupertinoOverrideTheme: CupertinoThemeData(
         brightness: isDarkMode ? Brightness.dark : Brightness.light,
       ),
       pageTransitionsTheme: NoTransitionsOnWeb(),
-      visualDensity: VisualDensity.standard,  // https://github.com/flutter/flutter/issues/77142
+      visualDensity: VisualDensity
+          .standard, // https://github.com/flutter/flutter/issues/77142
     );
   }
-
 }

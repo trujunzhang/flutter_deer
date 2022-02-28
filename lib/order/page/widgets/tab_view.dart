@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/Dimens.dart';
-import 'package:flutter_deer/res/gaps.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/widgets/load_image.dart';
+import 'package:flutter_deer_djzhang/res/Dimens.dart';
+import 'package:flutter_deer_djzhang/res/gaps.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/load_image.dart';
 
 List<List<String>> img = [
   ['order/xdd_s', 'order/xdd_n'],

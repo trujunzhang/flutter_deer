@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/login/login_router.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/widgets/my_app_bar.dart';
-import 'package:flutter_deer/widgets/click_item.dart';
-import 'package:flutter_deer/widgets/load_image.dart';
-
+import 'package:flutter_deer_djzhang/login/login_router.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/widgets/my_app_bar.dart';
+import 'package:flutter_deer_djzhang/widgets/click_item.dart';
+import 'package:flutter_deer_djzhang/widgets/load_image.dart';
 
 /// design/8设置/index.html#artboard1
 class AccountManagerPage extends StatefulWidget {
-
   const AccountManagerPage({Key? key}) : super(key: key);
 
   @override
@@ -26,10 +24,7 @@ class _AccountManagerPageState extends State<AccountManagerPage> {
         children: <Widget>[
           Stack(
             children: <Widget>[
-              ClickItem(
-                title: '店铺logo',
-                onTap: () {}
-              ),
+              ClickItem(title: '店铺logo', onTap: () {}),
               const Positioned(
                 top: 8.0,
                 bottom: 8.0,
@@ -39,10 +34,10 @@ class _AccountManagerPageState extends State<AccountManagerPage> {
             ],
           ),
           ClickItem(
-            title: '修改密码',
-            content: '用于密码登录',
-            onTap: () => NavigatorUtils.push(context, LoginRouter.updatePasswordPage)
-          ),
+              title: '修改密码',
+              content: '用于密码登录',
+              onTap: () =>
+                  NavigatorUtils.push(context, LoginRouter.updatePasswordPage)),
           const ClickItem(
             title: '绑定账号',
             content: '15000000000',

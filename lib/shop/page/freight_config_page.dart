@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/shop/models/freight_config_model.dart';
-import 'package:flutter_deer/shop/widgets/price_input_dialog.dart';
-import 'package:flutter_deer/shop/widgets/range_price_input_dialog.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/util/toast_utils.dart';
-import 'package:flutter_deer/widgets/my_app_bar.dart';
-import 'package:flutter_deer/widgets/load_image.dart';
-import 'package:flutter_deer/widgets/my_button.dart';
-import 'package:flutter_deer/widgets/my_card.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/shop/models/freight_config_model.dart';
+import 'package:flutter_deer_djzhang/shop/widgets/price_input_dialog.dart';
+import 'package:flutter_deer_djzhang/shop/widgets/range_price_input_dialog.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
+import 'package:flutter_deer_djzhang/util/toast_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/my_app_bar.dart';
+import 'package:flutter_deer_djzhang/widgets/load_image.dart';
+import 'package:flutter_deer_djzhang/widgets/my_button.dart';
+import 'package:flutter_deer_djzhang/widgets/my_card.dart';
 
 /// design/7店铺-店铺配置/index.html
 class FreightConfigPage extends StatefulWidget {

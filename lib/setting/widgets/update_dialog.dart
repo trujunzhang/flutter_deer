@@ -4,14 +4,14 @@ import 'package:dio/dio.dart';
 import 'package:flustars/flustars.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/util/image_utils.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/util/toast_utils.dart';
-import 'package:flutter_deer/util/other_utils.dart';
-import 'package:flutter_deer/util/version_utils.dart';
-import 'package:flutter_deer/widgets/my_button.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/util/image_utils.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
+import 'package:flutter_deer_djzhang/util/toast_utils.dart';
+import 'package:flutter_deer_djzhang/util/other_utils.dart';
+import 'package:flutter_deer_djzhang/util/version_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/my_button.dart';
 
 class UpdateDialog extends StatefulWidget {
   const UpdateDialog({Key? key}) : super(key: key);

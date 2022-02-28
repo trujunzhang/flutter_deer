@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/order/page/order_page.dart';
-import 'package:flutter_deer/order/page/widgets/SliverAppBarDelegate.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/statistics/statistics_router.dart';
-import 'package:flutter_deer/util/image_utils.dart';
-import 'package:flutter_deer/util/screen_utils.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/widgets/load_image.dart';
-import 'package:flutter_deer/widgets/my_card.dart';
-import 'package:flutter_deer/widgets/my_flexible_space_bar.dart';
+import 'package:flutter_deer_djzhang/order/page/order_page.dart';
+import 'package:flutter_deer_djzhang/order/page/widgets/SliverAppBarDelegate.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/statistics/statistics_router.dart';
+import 'package:flutter_deer_djzhang/util/image_utils.dart';
+import 'package:flutter_deer_djzhang/util/screen_utils.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/load_image.dart';
+import 'package:flutter_deer_djzhang/widgets/my_card.dart';
+import 'package:flutter_deer_djzhang/widgets/my_flexible_space_bar.dart';
 
 /// design/5统计/index.html
 class StatisticsPage extends StatefulWidget {

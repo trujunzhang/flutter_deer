@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/widgets.dart';
-import 'package:flutter_deer/res/constant.dart';
+import 'package:flutter_deer_djzhang/res/constant.dart';
 
 /// 捕获全局异常，进行统一处理。
 void handleError(void body) {
@@ -20,11 +20,9 @@ void handleError(void body) {
   runZonedGuarded(() => body, (Object error, StackTrace stackTrace) async {
     await _reportError(error, stackTrace);
   });
-
 }
 
 Future<void> _reportError(Object error, StackTrace stackTrace) async {
-
   if (!Constant.inProduction) {
     debugPrintStack(
       stackTrace: stackTrace,
@@ -34,5 +32,4 @@ Future<void> _reportError(Object error, StackTrace stackTrace) async {
   } else {
     /// 将异常信息收集并上传到服务器。可以直接使用类似`flutter_bugly`插件处理异常上报。
   }
-
 }

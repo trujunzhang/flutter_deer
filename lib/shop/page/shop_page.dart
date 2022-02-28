@@ -1,41 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_deer/account/account_router.dart';
-import 'package:flutter_deer/mvp/base_page.dart';
-import 'package:flutter_deer/res/resources.dart';
-import 'package:flutter_deer/routers/fluro_navigator.dart';
-import 'package:flutter_deer/setting/setting_router.dart';
-import 'package:flutter_deer/shop/models/user_entity.dart';
-import 'package:flutter_deer/shop/iview/shop_iview.dart';
-import 'package:flutter_deer/shop/presenter/shop_presenter.dart';
-import 'package:flutter_deer/shop/provider/user_provider.dart';
-import 'package:flutter_deer/shop/shop_router.dart';
-import 'package:flutter_deer/util/image_utils.dart';
-import 'package:flutter_deer/util/theme_utils.dart';
-import 'package:flutter_deer/widgets/load_image.dart';
+import 'package:flutter_deer_djzhang/account/account_router.dart';
+import 'package:flutter_deer_djzhang/mvp/base_page.dart';
+import 'package:flutter_deer_djzhang/res/resources.dart';
+import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
+import 'package:flutter_deer_djzhang/setting/setting_router.dart';
+import 'package:flutter_deer_djzhang/shop/models/user_entity.dart';
+import 'package:flutter_deer_djzhang/shop/iview/shop_iview.dart';
+import 'package:flutter_deer_djzhang/shop/presenter/shop_presenter.dart';
+import 'package:flutter_deer_djzhang/shop/provider/user_provider.dart';
+import 'package:flutter_deer_djzhang/shop/shop_router.dart';
+import 'package:flutter_deer_djzhang/util/image_utils.dart';
+import 'package:flutter_deer_djzhang/util/theme_utils.dart';
+import 'package:flutter_deer_djzhang/widgets/load_image.dart';
 import 'package:provider/provider.dart';
 
 /// design/6店铺-账户/index.html#artboard0
 class ShopPage extends StatefulWidget {
-
   const ShopPage({
     Key? key,
     this.isAccessibilityTest = false,
-  }) : super(key : key);
+  }) : super(key: key);
 
   final bool isAccessibilityTest;
-  
+
   @override
   _ShopPageState createState() => _ShopPageState();
 }
 
-class _ShopPageState extends State<ShopPage> with BasePageMixin<ShopPage, ShopPagePresenter>, AutomaticKeepAliveClientMixin<ShopPage> implements ShopIMvpView {
-  
+class _ShopPageState extends State<ShopPage>
+    with
+        BasePageMixin<ShopPage, ShopPagePresenter>,
+        AutomaticKeepAliveClientMixin<ShopPage>
+    implements ShopIMvpView {
   final List<String> _menuTitle = ['账户流水', '资金管理', '提现账号'];
   final List<String> _menuImage = ['zhls', 'zjgl', 'txzh'];
   final List<String> _menuDarkImage = ['dark_zhls', 'dark_zjgl', 'dark_txzh'];
 
   UserProvider provider = UserProvider();
-  
+
   @override
   void setUser(UserEntity? user) {
     provider.setUser(user);
@@ -43,15 +45,15 @@ class _ShopPageState extends State<ShopPage> with BasePageMixin<ShopPage, ShopPa
 
   @override
   bool get isAccessibilityTest => widget.isAccessibilityTest;
-  
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
     final Color? _iconColor = ThemeUtils.getIconColor(context);
     final Widget line = Container(
-      height: 0.6, 
-      width: double.infinity, 
-      margin: const EdgeInsets.only(left: 16.0), 
+      height: 0.6,
+      width: double.infinity,
+      margin: const EdgeInsets.only(left: 16.0),
       child: Gaps.line,
     );
     return ChangeNotifierProvider<UserProvider>(
@@ -105,7 +107,9 @@ class _ShopPageState extends State<ShopPage> with BasePageMixin<ShopPage, ShopPa
                       child: CircleAvatar(
                         radius: 28.0,
                         backgroundColor: Colors.transparent,
-                        backgroundImage: ImageUtils.getImageProvider(provider.user?.avatarUrl, holderImg: 'shop/tx'),
+                        backgroundImage: ImageUtils.getImageProvider(
+                            provider.user?.avatarUrl,
+                            holderImg: 'shop/tx'),
                       ),
                     ),
                     child!,
@@ -123,7 +127,11 @@ class _ShopPageState extends State<ShopPage> with BasePageMixin<ShopPage, ShopPa
                 left: 0.0,
                 child: Row(
                   children: const <Widget>[
-                    LoadAssetImage('shop/zybq', width: 40.0, height: 16.0,),
+                    LoadAssetImage(
+                      'shop/zybq',
+                      width: 40.0,
+                      height: 16.0,
+                    ),
                     Gaps.hGap8,
                     Text('店铺账号:15000000000', style: AppTextStyles.textSize12)
                   ],
@@ -148,11 +156,13 @@ class _ShopPageState extends State<ShopPage> with BasePageMixin<ShopPage, ShopPa
               darkImage: _menuDarkImage,
               onItemClick: (index) {
                 if (index == 0) {
-                  NavigatorUtils.push(context, AccountRouter.accountRecordListPage);
+                  NavigatorUtils.push(
+                      context, AccountRouter.accountRecordListPage);
                 } else if (index == 1) {
                   NavigatorUtils.push(context, AccountRouter.accountPage);
                 } else if (index == 2) {
-                  NavigatorUtils.push(context, AccountRouter.withdrawalAccountPage);
+                  NavigatorUtils.push(
+                      context, AccountRouter.withdrawalAccountPage);
                 }
               },
             ),
@@ -167,6 +177,7 @@ class _ShopPageState extends State<ShopPage> with BasePageMixin<ShopPage, ShopPa
                 ),
               ),
             ),
+
             /// 使用Flexible防止溢出
             Flexible(
               child: _ShopFunctionModule(
@@ -189,24 +200,22 @@ class _ShopPageState extends State<ShopPage> with BasePageMixin<ShopPage, ShopPa
 
   @override
   ShopPagePresenter createPresenter() => ShopPagePresenter();
- 
 }
 
 class _ShopFunctionModule extends StatelessWidget {
-
   const _ShopFunctionModule({
     Key? key,
     required this.onItemClick,
     required this.data,
     required this.image,
     required this.darkImage,
-  }): super(key: key);
-  
+  }) : super(key: key);
+
   final Function(int index) onItemClick;
   final List<String> data;
   final List<String> image;
   final List<String> darkImage;
-  
+
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
@@ -223,7 +232,11 @@ class _ShopFunctionModule extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              LoadAssetImage(context.isDark ? 'shop/${darkImage[index]}' : 'shop/${image[index]}', width: 32.0),
+              LoadAssetImage(
+                  context.isDark
+                      ? 'shop/${darkImage[index]}'
+                      : 'shop/${image[index]}',
+                  width: 32.0),
               Gaps.vGap4,
               Text(
                 data[index],
@@ -239,4 +252,3 @@ class _ShopFunctionModule extends StatelessWidget {
     );
   }
 }
-
