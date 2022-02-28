@@ -1,0 +1,21 @@
+SplashPage
+  >> LoginPage
+     >> StoreAuditPage
+        >> Home (4 BottomTabs)
+                 const OrderPage(),
+                 const GoodsPage(),
+                 const StatisticsPage(),
+                 const ShopPage(),
+
+
+
+
+
+
+
+
+
+
+
+
+
