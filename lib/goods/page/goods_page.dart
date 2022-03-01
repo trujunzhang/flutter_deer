@@ -12,7 +12,7 @@ import 'package:flutter_deer_djzhang/widgets/load_image.dart';
 import 'package:flutter_deer_djzhang/widgets/popup_window.dart';
 import 'package:provider/provider.dart';
 
-import 'widgets/tab_view.dart';
+import 'widgets/goods_tab_view.dart';
 
 /// design/4商品/index.html
 class GoodsPage extends StatefulWidget {

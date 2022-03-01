@@ -12,7 +12,7 @@ import 'package:flutter_deer_djzhang/widgets/load_image.dart';
 import 'package:flutter_deer_djzhang/widgets/popup_window.dart';
 import 'package:provider/provider.dart';
 
-import 'widgets/tab_view.dart';
+import 'widgets/goods_tab_view.dart';
 
 /// design/4商品/index.html
 class GoodsPage extends StatefulWidget {
@@ -93,7 +93,7 @@ class _GoodsPageState extends State<GoodsPage>
     );
   }
 
-  Widget _buildSelectGoods() {
+  Widget _buildSelectGoods(BuildContext context) {
     final Color? _iconColor = ThemeUtils.getIconColor(context);
     int sortIndex = 2;
     return Semantics(
@@ -125,7 +125,7 @@ class _GoodsPageState extends State<GoodsPage>
     );
   }
 
-  Widget _buildTabs() {
+  Widget _buildTabs(BuildContext context) {
     return Container(
       // 隐藏点击效果
       padding: const EdgeInsets.only(left: 16.0),
@@ -169,9 +169,9 @@ class _GoodsPageState extends State<GoodsPage>
       key: _bodyKey,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        _buildSelectGoods(),
+        _buildSelectGoods(context),
         Gaps.vGap24,
-        _buildTabs(),
+        _buildTabs(context),
         Gaps.line,
         Expanded(
           child: _buildPageView(),
