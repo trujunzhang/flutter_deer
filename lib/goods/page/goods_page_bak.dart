@@ -60,44 +60,42 @@ class _GoodsPageState extends State<GoodsPage>
   Widget build(BuildContext context) {
     super.build(context);
     final Color? _iconColor = ThemeUtils.getIconColor(context);
-    return ChangeNotifierProvider<GoodsPageProvider>(
-      create: (_) => provider,
-      child: Scaffold(
-        appBar: AppBar(
-          actions: <Widget>[
-            IconButton(
-              tooltip: '搜索商品',
-              onPressed: () =>
-                  NavigatorUtils.push(context, GoodsRouter.goodsSearchPage),
-              icon: LoadAssetImage(
-                'goods/search',
-                key: const Key('search'),
-                width: 24.0,
-                height: 24.0,
-                color: _iconColor,
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            tooltip: '搜索商品',
+            onPressed: () =>
+                NavigatorUtils.push(context, GoodsRouter.goodsSearchPage),
+            icon: LoadAssetImage(
+              'goods/search',
+              key: const Key('search'),
+              width: 24.0,
+              height: 24.0,
+              color: _iconColor,
             ),
-            IconButton(
-              tooltip: '添加商品',
-              key: _addKey,
-              onPressed: _showAddMenu,
-              icon: LoadAssetImage(
-                'goods/add',
-                key: const Key('add'),
-                width: 24.0,
-                height: 24.0,
-                color: _iconColor,
-              ),
-            )
-          ],
-        ),
-        body: _buildBody(context),
+          ),
+          IconButton(
+            tooltip: '添加商品',
+            key: _addKey,
+            onPressed: _showAddMenu,
+            icon: LoadAssetImage(
+              'goods/add',
+              key: const Key('add'),
+              width: 24.0,
+              height: 24.0,
+              color: _iconColor,
+            ),
+          )
+        ],
       ),
+      body: _buildBody(context),
     );
   }
 
   Widget _buildSelectGoods() {
     final Color? _iconColor = ThemeUtils.getIconColor(context);
+    int sortIndex = 2;
     return Semantics(
       container: true,
       label: '选择商品类型',
@@ -105,31 +103,22 @@ class _GoodsPageState extends State<GoodsPage>
         key: _buttonKey,
 
         /// 使用Selector避免同provider数据变化导致此处不必要的刷新
-        child: Selector<GoodsPageProvider, int>(
-          selector: (_, provider) => provider.sortIndex,
-
-          /// 精准判断刷新条件（provider 4.0新属性）
-          //  shouldRebuild: (previous, next) => previous != next,
-          builder: (_, sortIndex, __) {
-            // 只会触发sortIndex变化的刷新
-            return Row(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                Gaps.hGap16,
-                Text(
-                  _sortList[sortIndex],
-                  style: AppTextStyles.textBold24,
-                ),
-                Gaps.hGap8,
-                LoadAssetImage(
-                  'goods/expand',
-                  width: 16.0,
-                  height: 16.0,
-                  color: _iconColor,
-                )
-              ],
-            );
-          },
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Gaps.hGap16,
+            Text(
+              _sortList[sortIndex],
+              style: AppTextStyles.textBold24,
+            ),
+            Gaps.hGap8,
+            LoadAssetImage(
+              'goods/expand',
+              width: 16.0,
+              height: 16.0,
+              color: _iconColor,
+            )
+          ],
         ),
         onTap: () => _showSortMenu(),
       ),
@@ -154,7 +143,7 @@ class _GoodsPageState extends State<GoodsPage>
         indicatorSize: TabBarIndicatorSize.label,
         labelPadding: EdgeInsets.zero,
         unselectedLabelColor:
-        context.isDark ? AppColors.text_gray : AppColors.text,
+            context.isDark ? AppColors.text_gray : AppColors.text,
         labelColor: Theme.of(context).primaryColor,
         indicatorPadding: const EdgeInsets.only(right: 98.0 - 36.0),
         tabs: const <Widget>[
@@ -200,9 +189,9 @@ class _GoodsPageState extends State<GoodsPage>
   void _showSortMenu() {
     // 获取点击控件的坐标
     final RenderBox button =
-    _buttonKey.currentContext!.findRenderObject()! as RenderBox;
+        _buttonKey.currentContext!.findRenderObject()! as RenderBox;
     final RenderBox body =
-    _bodyKey.currentContext!.findRenderObject()! as RenderBox;
+        _bodyKey.currentContext!.findRenderObject()! as RenderBox;
 
     showPopupWindow<void>(
       context: context,
@@ -223,7 +212,7 @@ class _GoodsPageState extends State<GoodsPage>
   /// design/4商品/index.html#artboard4
   void _showAddMenu() {
     final RenderBox button =
-    _addKey.currentContext!.findRenderObject()! as RenderBox;
+        _addKey.currentContext!.findRenderObject()! as RenderBox;
 
     showPopupWindow<void>(
       context: context,
