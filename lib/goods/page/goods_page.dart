@@ -91,86 +91,91 @@ class _GoodsPageState extends State<GoodsPage>
             )
           ],
         ),
-        body: Column(
-          key: _bodyKey,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Semantics(
-              container: true,
-              label: '选择商品类型',
-              child: GestureDetector(
-                key: _buttonKey,
-
-                /// 使用Selector避免同provider数据变化导致此处不必要的刷新
-                child: Selector<GoodsPageProvider, int>(
-                  selector: (_, provider) => provider.sortIndex,
-
-                  /// 精准判断刷新条件（provider 4.0新属性）
-                  //  shouldRebuild: (previous, next) => previous != next,
-                  builder: (_, sortIndex, __) {
-                    // 只会触发sortIndex变化的刷新
-                    return Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Gaps.hGap16,
-                        Text(
-                          _sortList[sortIndex],
-                          style: AppTextStyles.textBold24,
-                        ),
-                        Gaps.hGap8,
-                        LoadAssetImage(
-                          'goods/expand',
-                          width: 16.0,
-                          height: 16.0,
-                          color: _iconColor,
-                        )
-                      ],
-                    );
-                  },
-                ),
-                onTap: () => _showSortMenu(),
-              ),
-            ),
-            Gaps.vGap24,
-            Container(
-              // 隐藏点击效果
-              padding: const EdgeInsets.only(left: 16.0),
-              color: context.backgroundColor,
-              child: TabBar(
-                onTap: (index) {
-                  if (!mounted) {
-                    return;
-                  }
-                  _pageController.jumpToPage(index);
-                },
-                isScrollable: true,
-                controller: _tabController,
-                labelStyle: AppTextStyles.textBold18,
-                indicatorSize: TabBarIndicatorSize.label,
-                labelPadding: EdgeInsets.zero,
-                unselectedLabelColor:
-                    context.isDark ? AppColors.text_gray : AppColors.text,
-                labelColor: Theme.of(context).primaryColor,
-                indicatorPadding: const EdgeInsets.only(right: 98.0 - 36.0),
-                tabs: const <Widget>[
-                  GoodsTabView('在售', 0),
-                  GoodsTabView('待售', 1),
-                  GoodsTabView('下架', 2),
-                ],
-              ),
-            ),
-            Gaps.line,
-            Expanded(
-              child: PageView.builder(
-                  key: const Key('pageView'),
-                  itemCount: 3,
-                  onPageChanged: _onPageChange,
-                  controller: _pageController,
-                  itemBuilder: (_, int index) => GoodsListPage(index: index)),
-            )
-          ],
-        ),
+        body: _buildBody(context),
       ),
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    final Color? _iconColor = ThemeUtils.getIconColor(context);
+    return Column(
+      key: _bodyKey,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Semantics(
+          container: true,
+          label: '选择商品类型',
+          child: GestureDetector(
+            key: _buttonKey,
+
+            /// 使用Selector避免同provider数据变化导致此处不必要的刷新
+            child: Selector<GoodsPageProvider, int>(
+              selector: (_, provider) => provider.sortIndex,
+
+              /// 精准判断刷新条件（provider 4.0新属性）
+              //  shouldRebuild: (previous, next) => previous != next,
+              builder: (_, sortIndex, __) {
+                // 只会触发sortIndex变化的刷新
+                return Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Gaps.hGap16,
+                    Text(
+                      _sortList[sortIndex],
+                      style: AppTextStyles.textBold24,
+                    ),
+                    Gaps.hGap8,
+                    LoadAssetImage(
+                      'goods/expand',
+                      width: 16.0,
+                      height: 16.0,
+                      color: _iconColor,
+                    )
+                  ],
+                );
+              },
+            ),
+            onTap: () => _showSortMenu(),
+          ),
+        ),
+        Gaps.vGap24,
+        Container(
+          // 隐藏点击效果
+          padding: const EdgeInsets.only(left: 16.0),
+          color: context.backgroundColor,
+          child: TabBar(
+            onTap: (index) {
+              if (!mounted) {
+                return;
+              }
+              _pageController.jumpToPage(index);
+            },
+            isScrollable: true,
+            controller: _tabController,
+            labelStyle: AppTextStyles.textBold18,
+            indicatorSize: TabBarIndicatorSize.label,
+            labelPadding: EdgeInsets.zero,
+            unselectedLabelColor:
+                context.isDark ? AppColors.text_gray : AppColors.text,
+            labelColor: Theme.of(context).primaryColor,
+            indicatorPadding: const EdgeInsets.only(right: 98.0 - 36.0),
+            tabs: const <Widget>[
+              GoodsTabView('在售', 0),
+              GoodsTabView('待售', 1),
+              GoodsTabView('下架', 2),
+            ],
+          ),
+        ),
+        Gaps.line,
+        Expanded(
+          child: PageView.builder(
+              key: const Key('pageView'),
+              itemCount: 3,
+              onPageChanged: _onPageChange,
+              controller: _pageController,
+              itemBuilder: (_, int index) => GoodsListPage(index: index)),
+        )
+      ],
     );
   }
 
