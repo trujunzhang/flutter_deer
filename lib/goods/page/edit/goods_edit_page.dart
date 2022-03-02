@@ -60,133 +60,140 @@ class _GoodsEditPageState extends State<GoodsEditPage> {
     }
   }
 
+  Widget _buildBody(BuildContext context) {
+    return MyScrollView(
+      key: const Key('goods_edit_page'),
+      padding: const EdgeInsets.symmetric(vertical: 16.0),
+      children: <Widget>[
+        Gaps.vGap5,
+        const Padding(
+          padding: EdgeInsets.only(left: 16.0),
+          child: Text(
+            '基本信息',
+            style: AppTextStyles.textBold18,
+          ),
+        ),
+        Gaps.vGap16,
+        Center(
+          child: SelectedImage(
+            heroTag: widget.heroTag,
+            url: widget.goodsImageUrl,
+            size: 96.0,
+          ),
+        ),
+        Gaps.vGap8,
+        Center(
+          child: Text(
+            '点击添加商品图片',
+            style: Theme.of(context)
+                .textTheme
+                .subtitle2
+                ?.copyWith(fontSize: AppDimens.font_sp14),
+          ),
+        ),
+        Gaps.vGap16,
+        const TextFieldItem(
+          title: '商品名称',
+          hintText: '填写商品名称',
+        ),
+        const TextFieldItem(
+          title: '商品简介',
+          hintText: '填写简短描述',
+        ),
+        const TextFieldItem(
+          title: '折后价格',
+          keyboardType: TextInputType.numberWithOptions(decimal: true),
+          hintText: '填写商品单品折后价格',
+        ),
+        Stack(
+          alignment: Alignment.centerRight,
+          children: <Widget>[
+            TextFieldItem(
+              controller: _codeController,
+              title: '商品条码',
+              hintText: '选填',
+            ),
+            Positioned(
+              right: 0.0,
+              child: Semantics(
+                label: '扫码',
+                child: GestureDetector(
+                  child: Padding(
+                    padding: const EdgeInsets.all(16.0),
+                    child: context.isDark
+                        ? const LoadAssetImage('goods/icon_sm',
+                            width: 16.0, height: 16.0)
+                        : const LoadAssetImage('goods/scanning',
+                            width: 16.0, height: 16.0),
+                  ),
+                  onTap: _scan,
+                ),
+              ),
+            )
+          ],
+        ),
+        const TextFieldItem(
+          title: '商品说明',
+          hintText: '选填',
+        ),
+        Gaps.vGap32,
+        const Padding(
+          padding: EdgeInsets.only(left: 16.0),
+          child: Text(
+            '折扣立减',
+            style: AppTextStyles.textBold18,
+          ),
+        ),
+        Gaps.vGap16,
+        const TextFieldItem(
+            title: '立减金额',
+            keyboardType: TextInputType.numberWithOptions(decimal: true)),
+        const TextFieldItem(
+            title: '折扣金额',
+            keyboardType: TextInputType.numberWithOptions(decimal: true)),
+        Gaps.vGap32,
+        const Padding(
+          padding: EdgeInsets.only(left: 16.0),
+          child: Text(
+            '类型规格',
+            style: AppTextStyles.textBold18,
+          ),
+        ),
+        Gaps.vGap16,
+        ClickItem(
+          title: '商品类型',
+          content: _goodsSortName ?? '选择商品类型',
+          onTap: () => _showBottomSheet(),
+        ),
+        ClickItem(
+          title: '商品规格',
+          content: '对规格进行编辑',
+          onTap: () {
+            NavigatorUtils.push(context, GoodsRouter.goodsSizePage);
+          },
+        ),
+        Gaps.vGap8,
+      ],
+      bottomButton: Padding(
+        padding: const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8.0),
+        child: MyButton(
+          onPressed: () {
+            NavigatorUtils.goBack(context);
+          },
+          text: '提交',
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: MyAppBar(
-          centerTitle: widget.isAdd ? '添加商品' : '编辑商品',
-        ),
-        body: MyScrollView(
-          key: const Key('goods_edit_page'),
-          padding: const EdgeInsets.symmetric(vertical: 16.0),
-          children: <Widget>[
-            Gaps.vGap5,
-            const Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: Text(
-                '基本信息',
-                style: AppTextStyles.textBold18,
-              ),
-            ),
-            Gaps.vGap16,
-            Center(
-              child: SelectedImage(
-                heroTag: widget.heroTag,
-                url: widget.goodsImageUrl,
-                size: 96.0,
-              ),
-            ),
-            Gaps.vGap8,
-            Center(
-              child: Text(
-                '点击添加商品图片',
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle2
-                    ?.copyWith(fontSize: AppDimens.font_sp14),
-              ),
-            ),
-            Gaps.vGap16,
-            const TextFieldItem(
-              title: '商品名称',
-              hintText: '填写商品名称',
-            ),
-            const TextFieldItem(
-              title: '商品简介',
-              hintText: '填写简短描述',
-            ),
-            const TextFieldItem(
-              title: '折后价格',
-              keyboardType: TextInputType.numberWithOptions(decimal: true),
-              hintText: '填写商品单品折后价格',
-            ),
-            Stack(
-              alignment: Alignment.centerRight,
-              children: <Widget>[
-                TextFieldItem(
-                  controller: _codeController,
-                  title: '商品条码',
-                  hintText: '选填',
-                ),
-                Positioned(
-                  right: 0.0,
-                  child: Semantics(
-                    label: '扫码',
-                    child: GestureDetector(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: context.isDark
-                            ? const LoadAssetImage('goods/icon_sm',
-                                width: 16.0, height: 16.0)
-                            : const LoadAssetImage('goods/scanning',
-                                width: 16.0, height: 16.0),
-                      ),
-                      onTap: _scan,
-                    ),
-                  ),
-                )
-              ],
-            ),
-            const TextFieldItem(
-              title: '商品说明',
-              hintText: '选填',
-            ),
-            Gaps.vGap32,
-            const Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: Text(
-                '折扣立减',
-                style: AppTextStyles.textBold18,
-              ),
-            ),
-            Gaps.vGap16,
-            const TextFieldItem(
-                title: '立减金额',
-                keyboardType: TextInputType.numberWithOptions(decimal: true)),
-            const TextFieldItem(
-                title: '折扣金额',
-                keyboardType: TextInputType.numberWithOptions(decimal: true)),
-            Gaps.vGap32,
-            const Padding(
-              padding: EdgeInsets.only(left: 16.0),
-              child: Text(
-                '类型规格',
-                style: AppTextStyles.textBold18,
-              ),
-            ),
-            Gaps.vGap16,
-            ClickItem(
-              title: '商品类型',
-              content: _goodsSortName ?? '选择商品类型',
-              onTap: () => _showBottomSheet(),
-            ),
-            ClickItem(
-              title: '商品规格',
-              content: '对规格进行编辑',
-              onTap: () =>
-                  NavigatorUtils.push(context, GoodsRouter.goodsSizePage),
-            ),
-            Gaps.vGap8,
-          ],
-          bottomButton: Padding(
-            padding:
-                const EdgeInsets.only(left: 16.0, right: 16.0, bottom: 8.0),
-            child: MyButton(
-              onPressed: () => NavigatorUtils.goBack(context),
-              text: '提交',
-            ),
-          ),
-        ));
+      appBar: MyAppBar(
+        centerTitle: widget.isAdd ? '添加商品' : '编辑商品',
+      ),
+      body: _buildBody(context),
+    );
   }
 
   final GoodsSortProvider _provider = GoodsSortProvider();
