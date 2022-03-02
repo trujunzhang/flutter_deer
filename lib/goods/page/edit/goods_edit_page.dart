@@ -14,7 +14,7 @@ import 'package:flutter_deer_djzhang/widgets/text_field_item.dart';
 import 'package:flutter_deer_djzhang/res/resources.dart';
 import 'package:flutter_deer_djzhang/widgets/my_app_bar.dart';
 
-import '../goods_router.dart';
+import '../../goods_router.dart';
 
 /// design/4商品/index.html#artboard5
 class GoodsEditPage extends StatefulWidget {

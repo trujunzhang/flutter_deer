@@ -1,7 +1,7 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter_deer_djzhang/goods/page/goods_edit_page.dart';
+import 'package:flutter_deer_djzhang/goods/page/edit/goods_edit_page.dart';
 import 'package:flutter_deer_djzhang/goods/page/goods_page.dart';
 import 'package:flutter_deer_djzhang/goods/page/goods_size_page.dart';
 import 'package:flutter_deer_djzhang/main.dart';

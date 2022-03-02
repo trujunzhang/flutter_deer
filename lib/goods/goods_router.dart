@@ -3,7 +3,7 @@ import 'package:fluro/fluro.dart';
 import 'package:flutter_deer_djzhang/goods/page/qr_code_scanner_page.dart';
 import 'package:flutter_deer_djzhang/routers/i_router.dart';
 
-import 'page/goods_edit_page.dart';
+import 'page/edit/goods_edit_page.dart';
 import 'page/goods_page.dart';
 import 'page/goods_search_page.dart';
 import 'page/goods_size_edit_page.dart';
