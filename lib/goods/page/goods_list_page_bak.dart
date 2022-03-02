@@ -40,7 +40,7 @@ class _GoodsListPageState extends State<GoodsListPage>
         duration: const Duration(milliseconds: 450), vsync: this);
     // 动画曲线
     final _curvedAnimation =
-        CurvedAnimation(parent: _controller, curve: Curves.easeOutSine);
+    CurvedAnimation(parent: _controller, curve: Curves.easeOutSine);
     _animation = Tween(begin: 0.0, end: 1.1).animate(_curvedAnimation)
       ..addStatusListener((status) {
         _animationStatus = status;
@@ -76,7 +76,7 @@ class _GoodsListPageState extends State<GoodsListPage>
         _page = 1;
         _list = List.generate(
             widget.index == 0 ? 3 : 10,
-            (i) => GoodsItemEntity(
+                (i) => GoodsItemEntity(
                 icon: _imgList[i % 6], title: '八月十五中秋月饼礼盒', type: i % 3));
       });
       _setGoodsCount(_list.length);
@@ -88,7 +88,7 @@ class _GoodsListPageState extends State<GoodsListPage>
       setState(() {
         _list.addAll(List.generate(
             10,
-            (i) => GoodsItemEntity(
+                (i) => GoodsItemEntity(
                 icon: _imgList[i % 6], title: '八月十五中秋月饼礼盒', type: i % 3)));
         _page++;
       });
@@ -106,6 +106,55 @@ class _GoodsListPageState extends State<GoodsListPage>
   late int _maxPage;
   StateType _stateType = StateType.loading;
 
+  Widget _buildItem(int index) {
+    final String heroTag = 'goodsImg${widget.index}-$index';
+
+    return GoodsItem(
+      index: index,
+      heroTag: heroTag,
+      selectIndex: _selectIndex,
+      item: _list[index],
+      animation: _animation,
+      onTapMenu: () {
+        /// 点击其他item时，重置状态
+        if (_selectIndex != index) {
+          _animationStatus = AnimationStatus.dismissed;
+        }
+
+        /// 避免动画中重复执行
+        if (_animationStatus == AnimationStatus.dismissed) {
+          // 开始执行动画
+          _controller.forward(from: 0.0);
+        }
+        setState(() {
+          _selectIndex = index;
+        });
+      },
+      onTapMenuClose: () {
+        if (_animationStatus == AnimationStatus.completed) {
+          _controller.reverse(from: 1.1);
+        }
+        _selectIndex = -1;
+      },
+      onTapEdit: () {
+        setState(() {
+          _selectIndex = -1;
+        });
+        final String url = EncryptUtil.encodeBase64(_list[index].icon);
+        NavigatorUtils.push(context,
+            '${GoodsRouter.goodsEditPage}?isAdd=false&url=$url&heroTag=$heroTag');
+      },
+      onTapOperation: () {
+        Toast.show('下架');
+      },
+      onTapDelete: () {
+        _controller.reverse(from: 1.1);
+        _selectIndex = -1;
+        _showDeleteBottomSheet(index);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     super.build(context);
@@ -116,51 +165,7 @@ class _GoodsListPageState extends State<GoodsListPage>
         loadMore: _loadMore,
         hasMore: _page < _maxPage,
         itemBuilder: (_, index) {
-          final String heroTag = 'goodsImg${widget.index}-$index';
-          return GoodsItem(
-            index: index,
-            heroTag: heroTag,
-            selectIndex: _selectIndex,
-            item: _list[index],
-            animation: _animation,
-            onTapMenu: () {
-              /// 点击其他item时，重置状态
-              if (_selectIndex != index) {
-                _animationStatus = AnimationStatus.dismissed;
-              }
-
-              /// 避免动画中重复执行
-              if (_animationStatus == AnimationStatus.dismissed) {
-                // 开始执行动画
-                _controller.forward(from: 0.0);
-              }
-              setState(() {
-                _selectIndex = index;
-              });
-            },
-            onTapMenuClose: () {
-              if (_animationStatus == AnimationStatus.completed) {
-                _controller.reverse(from: 1.1);
-              }
-              _selectIndex = -1;
-            },
-            onTapEdit: () {
-              setState(() {
-                _selectIndex = -1;
-              });
-              final String url = EncryptUtil.encodeBase64(_list[index].icon);
-              NavigatorUtils.push(context,
-                  '${GoodsRouter.goodsEditPage}?isAdd=false&url=$url&heroTag=$heroTag');
-            },
-            onTapOperation: () {
-              Toast.show('下架');
-            },
-            onTapDelete: () {
-              _controller.reverse(from: 1.1);
-              _selectIndex = -1;
-              _showDeleteBottomSheet(index);
-            },
-          );
+          return _buildItem(index);
         });
   }
 
