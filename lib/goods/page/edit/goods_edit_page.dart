@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_deer_djzhang/goods/page/edit/widgets/goods_sort_bottom_sheet.dart';
 import 'package:flutter_deer_djzhang/goods/provider/goods_sort_provider.dart';
-import 'package:flutter_deer_djzhang/goods/widgets/goods_sort_bottom_sheet.dart';
 import 'package:flutter_deer_djzhang/routers/fluro_navigator.dart';
 import 'package:flutter_deer_djzhang/util/device_utils.dart';
 import 'package:flutter_deer_djzhang/util/theme_utils.dart';
