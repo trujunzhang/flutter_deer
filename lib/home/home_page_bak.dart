@@ -165,39 +165,32 @@ class _HomeState extends State<Home> with RestorationMixin {
   @override
   Widget build(BuildContext context) {
     final bool isDark = context.isDark;
-    return ChangeNotifierProvider<HomeProvider>(
-      create: (_) => provider,
-      child: DoubleTapBackExitApp(
-        child: Scaffold(
-            bottomNavigationBar: Consumer<HomeProvider>(
-              builder: (_, provider, __) {
-                return BottomNavigationBar(
-                  backgroundColor: context.backgroundColor,
-                  items: isDark
-                      ? _buildDarkBottomNavigationBarItem()
-                      : _buildBottomNavigationBarItem(),
-                  type: BottomNavigationBarType.fixed,
-                  currentIndex: provider.value,
-                  elevation: 5.0,
-                  iconSize: 21.0,
-                  selectedFontSize: AppDimens.font_sp10,
-                  unselectedFontSize: AppDimens.font_sp10,
-                  selectedItemColor: Theme.of(context).primaryColor,
-                  unselectedItemColor: isDark
-                      ? AppColors.dark_unselected_item_color
-                      : AppColors.unselected_item_color,
-                  onTap: (index) => _pageController.jumpToPage(index),
-                );
-              },
-            ),
-            // 使用PageView的原因参看 https://zhuanlan.zhihu.com/p/58582876
-            body: PageView(
-              physics: const NeverScrollableScrollPhysics(), // 禁止滑动
-              controller: _pageController,
-              onPageChanged: (int index) => provider.value = index,
-              children: _pageList,
-            )),
-      ),
+    return DoubleTapBackExitApp(
+      child: Scaffold(
+          bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: context.backgroundColor,
+            items: isDark
+                ? _buildDarkBottomNavigationBarItem()
+                : _buildBottomNavigationBarItem(),
+            type: BottomNavigationBarType.fixed,
+            currentIndex: provider.value,
+            elevation: 5.0,
+            iconSize: 21.0,
+            selectedFontSize: AppDimens.font_sp10,
+            unselectedFontSize: AppDimens.font_sp10,
+            selectedItemColor: Theme.of(context).primaryColor,
+            unselectedItemColor: isDark
+                ? AppColors.dark_unselected_item_color
+                : AppColors.unselected_item_color,
+            onTap: (index) => _pageController.jumpToPage(index),
+          ),
+          // 使用PageView的原因参看 https://zhuanlan.zhihu.com/p/58582876
+          body: PageView(
+            physics: const NeverScrollableScrollPhysics(), // 禁止滑动
+            controller: _pageController,
+            onPageChanged: (int index) => provider.value = index,
+            children: _pageList,
+          )),
     );
   }
 
