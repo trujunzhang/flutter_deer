@@ -15,38 +15,42 @@ class _OrderTrackPageState extends State<OrderTrackPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: const MyAppBar(
-          centerTitle: '订单跟踪',
-        ),
-        body: MyScrollView(
-          children: <Widget>[
-            Padding(
-                padding:
-                    const EdgeInsets.only(top: 21.0, left: 16.0, right: 16.0),
-                child: Row(
-                  children: <Widget>[
-                    const Text('订单编号：'),
-                    // 可选择文本组件（复制）
-                    Semantics(
-                      label: '长按复制订单编号',
-                      child: const SelectableText(
-                        '14562364879',
-                        maxLines: 1,
-                      ),
+      appBar: const MyAppBar(
+        centerTitle: '订单跟踪',
+      ),
+      body: MyScrollView(
+        children: <Widget>[
+          Padding(
+              padding:
+                  const EdgeInsets.only(top: 21.0, left: 16.0, right: 16.0),
+              child: Row(
+                children: <Widget>[
+                  const Text('订单编号：'),
+                  // 可选择文本组件（复制）
+                  Semantics(
+                    label: '长按复制订单编号',
+                    child: const SelectableText(
+                      '14562364879',
+                      maxLines: 1,
                     ),
-                  ],
-                )),
-            Stepper(
-              physics: const BouncingScrollPhysics(),
-              currentStep: 4 - 1,
-              // TODO: DJZHANG
-              // controlsBuilder: (_, {onStepContinue, onStepCancel}) {
-              //   return Gaps.empty; //操作按钮置空
-              // },
-              steps: List.generate(4, (i) => _buildStep(i)),
-            )
-          ],
-        ));
+                  ),
+                ],
+              )),
+          Stepper(
+            physics: const BouncingScrollPhysics(),
+            currentStep: 4 - 1,
+            // TODO: DJZHANG
+            controlsBuilder: (BuildContext context, ControlsDetails details) {
+              return Gaps.empty; //操作按钮置空
+            },
+            // controlsBuilder: (_, {onStepContinue, onStepCancel}) {
+            // return Gaps.empty; //操作按钮置空
+            // },
+            steps: List.generate(4, (i) => _buildStep(i)),
+          )
+        ],
+      ),
+    );
   }
 
   final List<String> _titleList = ['订单已完成', '开始配送', '等待配送', '收到新订单'];
