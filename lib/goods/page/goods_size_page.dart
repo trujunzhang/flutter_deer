@@ -31,6 +31,7 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
   final GlobalKey _hintKey = GlobalKey();
 
   final List<GoodsSizeModel> _goodsSizeList = [];
+
   // 保留一个Slidable打开
   final SlidableController _slidableController = SlidableController();
 
@@ -100,65 +101,69 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
         },
       ),
       resizeToAvoidBottomInset: false,
-      body: SafeArea(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            Gaps.vGap16,
-            Text(
-              _sizeName,
-              style: AppTextStyles.textBold24,
+      body: _buildBody(context),
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    return SafeArea(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Gaps.vGap16,
+          Text(
+            _sizeName,
+            style: AppTextStyles.textBold24,
+          ),
+          Gaps.vGap8,
+          RichText(
+            key: const Key('name_edit'),
+            text: TextSpan(
+              text: '先对名称进行',
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle2
+                  ?.copyWith(fontSize: AppDimens.font_sp14),
+              children: <TextSpan>[
+                TextSpan(
+                  text: '编辑',
+                  semanticsLabel: '编辑',
+                  style: TextStyle(color: Theme.of(context).primaryColor),
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      _showGoodsSizeDialog();
+                    },
+                ),
+              ],
             ),
-            Gaps.vGap8,
-            RichText(
-              key: const Key('name_edit'),
-              text: TextSpan(
-                text: '先对名称进行',
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle2
-                    ?.copyWith(fontSize: AppDimens.font_sp14),
-                children: <TextSpan>[
-                  TextSpan(
-                    text: '编辑',
-                    semanticsLabel: '编辑',
-                    style: TextStyle(color: Theme.of(context).primaryColor),
-                    recognizer: TapGestureRecognizer()
-                      ..onTap = () {
-                        _showGoodsSizeDialog();
-                      },
+          ),
+          Gaps.vGap32,
+          Expanded(
+            child: _goodsSizeList.isEmpty
+                ? const StateLayout(
+                    type: StateType.goods,
+                    hintText: '暂无商品规格',
+                  )
+                : ListView.builder(
+                    itemCount: _goodsSizeList.length,
+                    itemExtent: 107.0,
+                    itemBuilder: (_, index) => _buildGoodsSizeItem(index),
                   ),
-                ],
-              ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: MyButton(
+              onPressed: _isEdit
+                  ? () {
+                      NavigatorUtils.push(
+                          context, GoodsRouter.goodsSizeEditPage);
+                    }
+                  : null,
+              text: '添加',
             ),
-            Gaps.vGap32,
-            Expanded(
-              child: _goodsSizeList.isEmpty
-                  ? const StateLayout(
-                      type: StateType.goods,
-                      hintText: '暂无商品规格',
-                    )
-                  : ListView.builder(
-                      itemCount: _goodsSizeList.length,
-                      itemExtent: 107.0,
-                      itemBuilder: (_, index) => _buildGoodsSizeItem(index),
-                    ),
-            ),
-            Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
-              child: MyButton(
-                onPressed: _isEdit
-                    ? () {
-                        NavigatorUtils.push(
-                            context, GoodsRouter.goodsSizeEditPage);
-                      }
-                    : null,
-                text: '添加',
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
