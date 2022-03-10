@@ -170,11 +170,12 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
 
   /// design/4商品/index.html#artboard19
   Widget _buildGoodsSizeItem(int index) {
+    GoodsSizeModel item = _goodsSizeList[index];
     // item
     Widget widget = Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        LoadAssetImage(_goodsSizeList[index].icon, width: 72.0, height: 72.0),
+        LoadAssetImage(item.icon, width: 72.0, height: 72.0),
         Gaps.hGap8,
         Expanded(
           child: Column(
@@ -184,12 +185,12 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text(
-                    _goodsSizeList[index].sizeName,
+                    item.sizeName,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                   ),
                   Text(
-                    '库存${_goodsSizeList[index].stock}',
+                    '库存${item.stock}',
                     style: AppTextStyles.textSize12,
                   ),
                 ],
@@ -198,15 +199,15 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
               Row(
                 children: <Widget>[
                   Offstage(
-                    offstage: _goodsSizeList[index].reducePrice.isEmpty,
+                    offstage: item.reducePrice.isEmpty,
                     child: _buildGoodsTag(Theme.of(context).errorColor,
-                        '立减${_goodsSizeList[index].reducePrice}元'),
+                        '立减${item.reducePrice}元'),
                   ),
                   Opacity(
                     opacity:
-                        _goodsSizeList[index].currencyPrice.isEmpty ? 0.0 : 1.0,
+                        item.currencyPrice.isEmpty ? 0.0 : 1.0,
                     child: _buildGoodsTag(Theme.of(context).primaryColor,
-                        '金币抵扣${_goodsSizeList[index].currencyPrice}元'),
+                        '金币抵扣${item.currencyPrice}元'),
                   )
                 ],
               ),
@@ -214,16 +215,16 @@ class _GoodsSizePageState extends State<GoodsSizePage> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
-                  Text(Utils.formatPrice(_goodsSizeList[index].price)),
+                  Text(Utils.formatPrice(item.price)),
                   const SizedBox(
                     width: 50.0,
                   ),
                   Text(
-                    '佣金${_goodsSizeList[index].charges}元',
+                    '佣金${item.charges}元',
                     style: AppTextStyles.textSize12,
                   ),
                   Text(
-                    '起购${_goodsSizeList[index].minSaleNum}件',
+                    '起购${item.minSaleNum}件',
                     style: AppTextStyles.textSize12,
                   ),
                 ],
