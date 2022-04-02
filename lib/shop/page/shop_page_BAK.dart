@@ -7,12 +7,10 @@ import 'package:flutter_deer_djzhang/setting/setting_router.dart';
 import 'package:flutter_deer_djzhang/shop/models/user_entity.dart';
 import 'package:flutter_deer_djzhang/shop/iview/shop_iview.dart';
 import 'package:flutter_deer_djzhang/shop/presenter/shop_presenter.dart';
-import 'package:flutter_deer_djzhang/shop/provider/user_provider.dart';
 import 'package:flutter_deer_djzhang/shop/shop_router.dart';
 import 'package:flutter_deer_djzhang/util/image_utils.dart';
 import 'package:flutter_deer_djzhang/util/theme_utils.dart';
 import 'package:flutter_deer_djzhang/widgets/load_image.dart';
-import 'package:provider/provider.dart';
 
 import 'widgets/index.dart';
 
@@ -38,11 +36,11 @@ class _ShopPageState extends State<ShopPage>
   final List<String> _menuImage = ['zhls', 'zjgl', 'txzh'];
   final List<String> _menuDarkImage = ['dark_zhls', 'dark_zjgl', 'dark_txzh'];
 
-  UserProvider provider = UserProvider();
+  UserEntity? _user;
 
   @override
   void setUser(UserEntity? user) {
-    provider.setUser(user);
+    // provider.setUser(user);
   }
 
   @override
@@ -93,51 +91,7 @@ class _ShopPageState extends State<ShopPage>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           Gaps.vGap12,
-          Consumer<UserProvider>(
-            builder: (_, provider, child) {
-              final Widget header = Stack(
-                children: <Widget>[
-                  const SizedBox(width: double.infinity, height: 56.0),
-                  const Text(
-                    '官方直营店',
-                    style: AppTextStyles.textBold24,
-                  ),
-                  Positioned(
-                    right: 0.0,
-                    child: CircleAvatar(
-                      radius: 28.0,
-                      backgroundColor: Colors.transparent,
-                      backgroundImage: ImageUtils.getImageProvider(
-                          provider.user?.avatarUrl,
-                          holderImg: 'shop/tx'),
-                    ),
-                  ),
-                  child!,
-                ],
-              );
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                child: MergeSemantics(
-                  child: header,
-                ),
-              );
-            },
-            child: Positioned(
-              top: 38.0,
-              left: 0.0,
-              child: Row(
-                children: const <Widget>[
-                  LoadAssetImage(
-                    'shop/zybq',
-                    width: 40.0,
-                    height: 16.0,
-                  ),
-                  Gaps.hGap8,
-                  Text('店铺账号:15000000000', style: AppTextStyles.textSize12)
-                ],
-              ),
-            ),
-          ),
+          _buildHeader(),
           Gaps.vGap24,
           line,
           Gaps.vGap24,
@@ -199,4 +153,48 @@ class _ShopPageState extends State<ShopPage>
 
   @override
   ShopPagePresenter createPresenter() => ShopPagePresenter();
+
+  Widget _buildHeader() {
+    final Widget header = Stack(
+      children: <Widget>[
+        const SizedBox(width: double.infinity, height: 56.0),
+        const Text(
+          '官方直营店',
+          style: AppTextStyles.textBold24,
+        ),
+        Positioned(
+          right: 0.0,
+          child: CircleAvatar(
+            radius: 28.0,
+            backgroundColor: Colors.transparent,
+            backgroundImage: ImageUtils.getImageProvider(
+              _user?.avatarUrl,
+              holderImg: 'shop/tx',
+            ),
+          ),
+        ),
+        Positioned(
+          top: 38.0,
+          left: 0.0,
+          child: Row(
+            children: const <Widget>[
+              LoadAssetImage(
+                'shop/zybq',
+                width: 40.0,
+                height: 16.0,
+              ),
+              Gaps.hGap8,
+              Text('店铺账号:15000000000', style: AppTextStyles.textSize12)
+            ],
+          ),
+        ),
+      ],
+    );
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 16.0),
+      child: MergeSemantics(
+        child: header,
+      ),
+    );
+  }
 }
