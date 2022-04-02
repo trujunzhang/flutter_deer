@@ -14,6 +14,8 @@ import 'package:flutter_deer_djzhang/util/theme_utils.dart';
 import 'package:flutter_deer_djzhang/widgets/load_image.dart';
 import 'package:provider/provider.dart';
 
+import 'widgets/index.dart';
+
 /// design/6店铺-账户/index.html#artboard0
 class ShopPage extends StatefulWidget {
   const ShopPage({
@@ -150,7 +152,7 @@ class _ShopPageState extends State<ShopPage>
                 ),
               ),
             ),
-            _ShopFunctionModule(
+            ShopFunctionModule(
               data: _menuTitle,
               image: _menuImage,
               darkImage: _menuDarkImage,
@@ -180,7 +182,7 @@ class _ShopPageState extends State<ShopPage>
 
             /// 使用Flexible防止溢出
             Flexible(
-              child: _ShopFunctionModule(
+              child: ShopFunctionModule(
                 data: const ['店铺设置'],
                 image: const ['dpsz'],
                 darkImage: const ['dark_dpsz'],
@@ -200,55 +202,4 @@ class _ShopPageState extends State<ShopPage>
 
   @override
   ShopPagePresenter createPresenter() => ShopPagePresenter();
-}
-
-class _ShopFunctionModule extends StatelessWidget {
-  const _ShopFunctionModule({
-    Key? key,
-    required this.onItemClick,
-    required this.data,
-    required this.image,
-    required this.darkImage,
-  }) : super(key: key);
-
-  final Function(int index) onItemClick;
-  final List<String> data;
-  final List<String> image;
-  final List<String> darkImage;
-
-  @override
-  Widget build(BuildContext context) {
-    return GridView.builder(
-      shrinkWrap: true,
-      padding: const EdgeInsets.fromLTRB(8.0, 0, 8.0, 12.0),
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 4,
-        childAspectRatio: 1.18,
-      ),
-      itemCount: data.length,
-      itemBuilder: (_, index) {
-        return InkWell(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              LoadAssetImage(
-                  context.isDark
-                      ? 'shop/${darkImage[index]}'
-                      : 'shop/${image[index]}',
-                  width: 32.0),
-              Gaps.vGap4,
-              Text(
-                data[index],
-                style: AppTextStyles.textSize12,
-              )
-            ],
-          ),
-          onTap: () {
-            onItemClick(index);
-          },
-        );
-      },
-    );
-  }
 }
